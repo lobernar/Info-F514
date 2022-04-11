@@ -9,7 +9,7 @@
 int main(){
     const int sec_param = 110;  // Security parameter
     const unsigned size = 128;  // Biometric vector length
-    int in_vect[size]; // TODO: get real data
+    int in_vect[size];
 
     //Initialisation (generating parameters, key pairs, ...) 
     TFheGateBootstrappingParameterSet* params = new_default_gate_bootstrapping_parameters(sec_param);
@@ -27,7 +27,7 @@ int main(){
         bootsSymEncrypt(&ciphertext[i], (in_vect[i]>>i)&1, key);
     }
 
-    // Exporting
+    // Exporting sample
     FILE* cloud_data = fopen("cloud.data", "wb");
     for(unsigned i=0; i<size; i++){
         export_gate_bootstrapping_ciphertext_toFile(cloud_data, &ciphertext[i], params);
