@@ -46,7 +46,6 @@ void addNNbit(LweSample* result, LweSample* a, LweSample* b, LweSample* carry, c
 
 /*
  * Ciphertext functions
-*/
 
 int euclidean_dist(int x[], int y[], int size){
     unsigned sum = 0;
@@ -60,10 +59,4 @@ bool matching(int sample[], int templt[], int size, unsigned B){
     return 0;  // No match
 }
 
-int g(int b, int r_0, int r_1){
-    return (1-b)*r_0 + b*r_1;
-}
-
-void HEg(){
-    
-}
+*/
