@@ -9,7 +9,23 @@
 int main(){
     const int sec_param = 110;  // Security parameter
     const unsigned size = 128;  // Biometric vector length
-    int in_vect[size];
+    int template_client[size];  // Oroginal template
+    int sample_true[size];  // Trustworthy user
+    int sample_false[size];  // Untrustworthy user
+
+    // Initialize biometric vectors
+    for (int i = 0; i < size; ++i) {
+        //srand(time(NULL)*i^3);  //srand used to seed the random generator
+        template_client[i] =  rand() %255;
+        sample_true[i] = template_client[i] + 1;
+        // srand(time(NULL)+i);
+        sample_false[i] = rand() %256;
+    }
+
+    /*
+     * TODO: Encrypt template and sample
+    */
+
 
     //Initialisation (generating parameters, key pairs, ...) 
     TFheGateBootstrappingParameterSet* params = new_default_gate_bootstrapping_parameters(sec_param);
@@ -24,7 +40,7 @@ int main(){
     // Encrypting
     LweSample* ciphertext = new_gate_bootstrapping_ciphertext_array(size, params);
     for(unsigned i=0; i<size; ++i){
-        bootsSymEncrypt(&ciphertext[i], (in_vect[i]>>i)&1, key);
+        bootsSymEncrypt(&ciphertext[i], (template_client[i]>>i)&1, key);
     }
 
     // Exporting sample

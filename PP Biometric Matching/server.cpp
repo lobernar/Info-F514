@@ -8,22 +8,6 @@
 #include <math.h>
 #include "circuits.cpp"
 
-int euclidean_dist(int x[], int y[], int size){
-    unsigned sum = 0;
-    for(int i=0; i<size; ++i) sum = sum +  pow(y[i]-x[i], 2);
-    return sqrt(sum);
-}
-
-bool matching(int sample[], int templt[], int size, unsigned B){
-    int dist = euclidean_dist(templt, sample, size);
-    if(pow(dist, 2) <= B) return 1;  // Match
-    return 0;  // No match
-}
-
-int g(int b, int r_0, int r_1){
-    return (1-b)*r_0 + b*r_1;
-}
-
 
 int main(){
     int size = 128; // Biometric vector length
@@ -37,7 +21,6 @@ int main(){
     LweSample* sample = new_gate_bootstrapping_ciphertext_array(size, params);
 
     /*
-     * TODO: initial template
      * For now, assume the initial template is already stored on the server
      */
     // Read template from file
@@ -54,10 +37,13 @@ int main(){
     LweSample* result = new_gate_bootstrapping_ciphertext_array(size, params); // Result of circuit will be stored here
 
     /*
-     * TODO: implemenmt circuit
+     * Use some circuit
      */
 
 
+    // Generate random r_0 and r_1
+    unsigned r_0 = rand()%256;
+    unsigned r_1 = rand()%256;
 
     //export the resulting ciphertext to a file (for the cloud)
     FILE* answer_data = fopen("answer.data","wb");
