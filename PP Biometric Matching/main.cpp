@@ -7,6 +7,19 @@
 #include <stdio.h>
 #include "circuits.cpp"
 
+void protocolSimulation() {
+    
+}
+
+void initVectors(unsigned size, int[]& template_cli, int[]& sample_true, int[]& sample_false){
+
+}
+
+void encryptVectors(unsigned size, LweSample& template_cipher, LweSample& sample_true_cipher, LweSample& smaple_false_cipher){
+
+
+}
+
 int main(){
     const int sec_param = 110;  // Security parameter
     const unsigned size = 128;  // Biometric vector length
