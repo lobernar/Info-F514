@@ -42,7 +42,7 @@ void computation () {
 }
 
 int main() {
-    
+    // write. code here
 }
 
 
