@@ -1,4 +1,4 @@
-#include <tfhe_gate_bootstrapping_functions.h>
+#include <tfhe/tfhe_gate_bootstrapping_functions.h>
 
 
 /*
@@ -32,7 +32,8 @@ void add1Bit(LweSample* result, LweSample* a, LweSample* b, LweSample* carry, co
 }
 
 void addNNbit(LweSample* result, LweSample* a, LweSample* b, LweSample* carry, const int bitsize, const TFheGateBootstrappingCloudKeySet* cloud_key){
-    LweSample* carry = new_gate_bootstrapping_ciphertext_array(1, cloud_key->params);
+    // LweSample* carry = new_gate_bootstrapping_ciphertext_array(1, cloud_key->params); // ? same variable
+    carry = new_gate_bootstrapping_ciphertext_array(1, cloud_key->params);
     // Assign 0 to carry
     bootsCONSTANT(&carry[0], 0, cloud_key);
 

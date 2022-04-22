@@ -1,4 +1,7 @@
-all: main
+all: main 
 
 main: 
-	g++ main.cpp -o main -ltfhe-spqlios-fma
+	g++ main.cpp client.cpp server.cpp -o main -ltfhe-spqlios-fma
+
+run:
+	./main
