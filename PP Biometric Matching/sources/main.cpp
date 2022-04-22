@@ -4,17 +4,18 @@
 */
 #include <tfhe/tfhe.h>
 #include <tfhe/tfhe_io.h>
-#include <stdio.h>
+#include <iostream>
 
 #include "circuits.cpp"
 
-#include "client.hpp"
-#include "server.hpp"
+#include "../headers/client.hpp"
+#include "../headers/server.hpp"
 
-// -- Declarat
+// -- Declarations -- //
 void protocol();
 void computation ();
 void precomputation();
+// -----------------  //
 
 void protocol() {
     precomputation();
@@ -43,6 +44,8 @@ void computation () {
 
 int main() {
     // write. code here
+    Client* client = new Client();
+    
 }
 
 

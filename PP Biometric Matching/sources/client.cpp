@@ -1,4 +1,4 @@
-#include "client.hpp"
+#include "../headers/client.hpp"
 
 Client::Client(){
     this->template_client = new int[size];

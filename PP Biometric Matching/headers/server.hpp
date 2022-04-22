@@ -2,7 +2,8 @@
 #define _Server_HPP
 #include <tfhe/tfhe.h>
 #include <tfhe/tfhe_io.h>
-#include <stdio.h>
+#include <iostream>
+
 class Server
 {
 private:
@@ -11,7 +12,8 @@ private:
     TFheGateBootstrappingSecretKeySet* key;
     const TFheGateBootstrappingCloudKeySet* cloud_key;
 public:
-    Server(TFheGateBootstrappingParameterSet* params, TFheGateBootstrappingSecretKeySet* sec_key);
+    //Server(TFheGateBootstrappingParameterSet* params, TFheGateBootstrappingSecretKeySet* sec_key);
+    Server();
     ~Server();
 };
 

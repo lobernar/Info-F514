@@ -2,7 +2,8 @@
 #define _Client_HPP
 #include <tfhe/tfhe.h>
 #include <tfhe/tfhe_io.h>
-#include <stdio.h>
+#include <iostream>
+
 class Client
 {
 private:
