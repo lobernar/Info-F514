@@ -3,7 +3,7 @@
 Server::Server(TFheGateBootstrappingParameterSet* params, const TFheGateBootstrappingCloudKeySet* key){
     this->params = params;
     this->cloud_key = key;
-    this->result = new_gate_bootstrapping_ciphertext_array(this->size, this->params);
+    this->matching_result_cipher = new_gate_bootstrapping_ciphertext_array(this->size, this->params);
 }
 
 Server::~Server(){
@@ -32,13 +32,33 @@ void Server::initRandomNumbers(){
 }
 
 void Server::computeF(LweSample* result, LweSample* x[], LweSample* y[]){
-    this->match_lim_cipher = new_gate_bootstrapping_ciphertext_array(max_bitsize, params);
+    LweSample* match_lim_cipher = new_gate_bootstrapping_ciphertext_array(max_bitsize, params);
     for (int i=0; i < max_bitsize; i++) {
-        bootsSymEncrypt(&this->match_lim_cipher[i], (this->match_lim>>i)&1, key);
+        bootsSymEncrypt(&match_lim_cipher[i], (this->match_lim>>i)&1, key);
     }
-    f(result, x, y, this->match_lim_cipher, this->cipher_size, this->cloud_key);
+    f(result, x, y, match_lim_cipher, this->cipher_size, this->cloud_key);
 }
 
 void Server::computeG(LweSample* result, LweSample* b, LweSample* r0, LweSample* r1){
     g(result, b, r0, r1, this->cipher_size, this->cloud_key);
+}
+
+void Server::sendMatchingToken(Client& client){
+    client.decryptMatchingResult(this->matching_result_cipher);
+}
+
+void Server::sendIdToken(Client& client){
+    client.setIdToken(this->id_token);
+}
+
+void Server::setMatchingResult(int token){
+    this->matching_result = token;
+}
+
+void Server::identifyUser(Client& client){
+    // Accept user
+    if(this->matching_result == this->r_1) this->id_token = 1;
+    // Reject user
+    else this->id_token = 0;
+    this->sendIdToken(client);
 }

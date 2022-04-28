@@ -31,6 +31,21 @@ void Client::sendFalseSample(Server& server){
     server.setSample(this->sample_false_cipher);
 }
 
+void Client::decryptMatchingResult(LweSample* token){
+    for (int i=0; i<this->cipher_size; i++) {
+        int ai = bootsSymDecrypt(&token[i], this->key);
+        this->matching_result |= (ai<<i);
+    }
+}
+
+void Client::setIdToken(int token){
+    this->id_token = token;
+}
+
+void Client::sendDecToken(Server& server){
+    server.setMatchingResult(this->matching_result);
+}
+
 void Client::encryptVectors() {
     for(unsigned i=0; i<size; ++i){
     template_cipher[i] = new_gate_bootstrapping_ciphertext_array(cipher_size, params);

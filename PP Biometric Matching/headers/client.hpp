@@ -22,19 +22,27 @@ private:
     LweSample** template_cipher;
     LweSample** sample_true_cipher;
     LweSample** sample_false_cipher;
+    int matching_result;
+    int id_token;
 
 public:
     Client(/* args */);
     TFheGateBootstrappingParameterSet* getParams();
     const TFheGateBootstrappingCloudKeySet* getCloudKey();
-    void keyGeneration(); // ! fixme return (sk, pk) pair
+    // void keyGeneration(); // ! fixme return (sk, pk) pair
+    // LweSample* getTemplate();
+    // LweSample* getTrueSample();
+    // LweSample* getFalseSample();
+    // int getMatchingResult();
+    void decryptMatchingResult(LweSample* token);
+    void setIdToken(int token);
     void sendTemplate(Server& server);
     void sendTrueSample(Server& server);
     void sendFalseSample(Server& server);
+    void sendDecToken(Server& server);
     void templateEncryption();
     void initVectors();
     void encryptVectors();
-    void decryptY(LweSample* y_cipher);
     ~Client();
 };
 

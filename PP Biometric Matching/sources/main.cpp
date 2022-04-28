@@ -12,29 +12,34 @@
 #include "../headers/server.hpp"
 
 // -- Declarations -- //
-void protocol(Client& cli, Server& serv);
-void computation (Client& cli, Server& serv);
-void precomputation(Client& cli);
+void protocol(Client& client, Server& server);
+void computation (Client& client, Server& server, bool sample);
+void precomputation(Client& client, Server& server);
 // -----------------  //
 
-void protocol(Client& cli, Server& serv) {
-    precomputation(cli);
-    computation(cli, serv);
+void protocol(Client& client, Server& server) {
+    precomputation(client, server);
+    computation(client, server, true); // Launch protocol with true sample
+    computation(client, server, false); // Launch protocol with false sample
 }
 
-void precomputation(Client& cli) {
+void precomputation(Client& client, Server& server) {
     // client precomputation
-    cli.initVectors(); // Generate template, true sample and false sample
-    cli.encryptVectors(); // Encrypting the previously generated vectors
+    client.initVectors(); // Generate template, true sample and false sample
+    client.encryptVectors(); // Encrypting the previously generated vectors
 
-    // sending message to server
-    
+    // sending template to server
+    client.sendTemplate(server);
 }
 
-void computation(Client& cli, Server& serv) {
-    // client encryption
+void computation(Client& client, Server& server, bool sample) {
+    // client encryption (already done in precomputation)
 
-    // sending template : client -> server 
+    // sending true sample : client -> server
+    if(sample) {
+        client.sendTrueSample(server);
+
+    }
 
     // server stuff
 

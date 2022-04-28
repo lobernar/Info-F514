@@ -4,6 +4,7 @@
 #include <tfhe/tfhe_io.h>
 #include <iostream>
 #include "../sources/circuits.cpp"
+#include "client.hpp"
 
 class Server
 {
@@ -17,24 +18,29 @@ private:
     TFheGateBootstrappingParameterSet* params;
     TFheGateBootstrappingSecretKeySet* key;
     const TFheGateBootstrappingCloudKeySet* cloud_key;
-    LweSample* match_lim_cipher;
     LweSample** template_client;
     LweSample** sample_client;
-    LweSample* result;
+    int matching_result;
+    LweSample* matching_result_cipher;
     LweSample* b;
     unsigned r_0;
     unsigned r_1;
     LweSample* r_0_cipher;
     LweSample* r_1_cipher;
+    int id_token;
 
 public:
     Server(TFheGateBootstrappingParameterSet* params, const TFheGateBootstrappingCloudKeySet* key);
     ~Server();
     void setTemplate(LweSample* templ[]);
     void setSample(LweSample* sample[]);
+    void setMatchingResult(int token);
     void initRandomNumbers();
     void computeF(LweSample* result_b, LweSample* x[], LweSample* y[]);
     void computeG(LweSample* result, LweSample* b, LweSample* r0, LweSample* r1);
+    void sendMatchingToken(Client& client);
+    void sendIdToken(Client& client);
+    void identifyUser(Client& client);
 };
 
 #endif
