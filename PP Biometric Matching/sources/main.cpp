@@ -12,23 +12,26 @@
 #include "../headers/server.hpp"
 
 // -- Declarations -- //
-void protocol();
-void computation ();
-void precomputation();
+void protocol(Client& cli, Server& serv);
+void computation (Client& cli, Server& serv);
+void precomputation(Client& cli);
 // -----------------  //
 
-void protocol() {
-    precomputation();
-    computation();
+void protocol(Client& cli, Server& serv) {
+    precomputation(cli);
+    computation(cli, serv);
 }
 
-void precomputation() {
+void precomputation(Client& cli) {
     // client precomputation
+    cli.initVectors(); // Generate template, true sample and false sample
+    cli.encryptVectors(); // Encrypting the previously generated vectors
 
     // sending message to server
+    
 }
 
-void computation () {
+void computation(Client& cli, Server& serv) {
     // client encryption
 
     // sending template : client -> server 
@@ -46,6 +49,7 @@ int main() {
     // write. code here
     Client* client = new Client();
     Server* server = new Server(client->getParams(), client->getCloudKey());
+    //protocol(*client, *server);
 }
 
 

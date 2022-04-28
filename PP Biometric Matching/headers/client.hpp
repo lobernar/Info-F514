@@ -3,6 +3,7 @@
 #include <tfhe/tfhe.h>
 #include <tfhe/tfhe_io.h>
 #include <iostream>
+#include "server.hpp"
 
 class Client
 {
@@ -27,9 +28,13 @@ public:
     TFheGateBootstrappingParameterSet* getParams();
     const TFheGateBootstrappingCloudKeySet* getCloudKey();
     void keyGeneration(); // ! fixme return (sk, pk) pair
+    void sendTemplate(Server& server);
+    void sendTrueSample(Server& server);
+    void sendFalseSample(Server& server);
     void templateEncryption();
     void initVectors();
     void encryptVectors();
+    void decryptY(LweSample* y_cipher);
     ~Client();
 };
 
