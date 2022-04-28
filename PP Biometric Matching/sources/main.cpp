@@ -45,7 +45,7 @@ void computation () {
 int main() {
     // write. code here
     Client* client = new Client();
-    
+    Server* server = new Server(client->getParams(), client->getCloudKey());
 }
 
 

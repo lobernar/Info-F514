@@ -24,6 +24,8 @@ private:
 
 public:
     Client(/* args */);
+    TFheGateBootstrappingParameterSet* getParams();
+    const TFheGateBootstrappingCloudKeySet* getCloudKey();
     void keyGeneration(); // ! fixme return (sk, pk) pair
     void templateEncryption();
     void initVectors();

@@ -15,6 +15,10 @@ Client::~Client(){
     delete this->sample_true;
 }
 
+const TFheGateBootstrappingCloudKeySet* Client::getCloudKey(){ return this->cloud_key;}
+
+TFheGateBootstrappingParameterSet* Client::getParams() {return this->params;}
+
 void Client::encryptVectors() {
     for(unsigned i=0; i<size; ++i){
     template_cipher[i] = new_gate_bootstrapping_ciphertext_array(cipher_size, params);
