@@ -25,36 +25,45 @@ void protocol(Client& client, Server& server) {
 
 void precomputation(Client& client, Server& server) {
     // client precomputation
-    client.initVectors(); // Generate template, true sample and false sample
-    client.encryptVectors(); // Encrypting the previously generated vectors
+    client.initTemplate(); // Generate template, true sample and false sample
+    client.encryptTemplate(); // Encrypting the previously generated vectors
 
     // sending template to server
     client.sendTemplate(server);
 }
 
 void computation(Client& client, Server& server, bool sample) {
-    // client encryption (already done in precomputation)
+    // client encryption
+    client.initSamples();
+    client.encryptSamples();
 
     // sending true sample : client -> server
     if(sample) {
         client.sendTrueSample(server);
 
+    }else{
+        client.sendFalseSample(server);
     }
 
-    // server stuff
+    // server computations
+    server.computeF();
+    server.initAndEncRandomNumbers();
+    server.computeG();
 
     // sending y' : server -> client
-
+    server.sendMatchingToken(client);
     // sending y : client -> server
-
+    client.sendDecToken(server);
     // sending r : server -> client
+    server.identifyUser();
+    server.sendIdToken(client);
 }
 
 int main() {
     // write. code here
     Client* client = new Client();
     Server* server = new Server(client->getParams(), client->getCloudKey());
-    //protocol(*client, *server);
+    protocol(*client, *server);
 }
 
 

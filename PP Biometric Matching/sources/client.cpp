@@ -19,6 +19,43 @@ const TFheGateBootstrappingCloudKeySet* Client::getCloudKey(){ return this->clou
 
 TFheGateBootstrappingParameterSet* Client::getParams() {return this->params;}
 
+void Client::initTemplate(){
+    for (unsigned i = 0; i < this->size; ++i) {
+        //srand(time(NULL)*i^3);  //srand used to seed the random generator
+        this->template_client[i] =  rand() %this->m-1;
+    }
+}
+
+void Client::initSamples(){
+    for (unsigned i = 0; i < this->size; ++i) {
+        //srand(time(NULL)*i^3);  //srand used to seed the random generator
+        this->sample_true[i] = this->template_client[i] + 1;
+        // srand(time(NULL)+i);
+        this->sample_false[i] = rand() % this->m;
+    }
+}
+
+void Client::encryptTemplate(){
+    for(unsigned i=0; i<this->size; ++i){
+        this->template_cipher[i] = new_gate_bootstrapping_ciphertext_array(this->cipher_size, this->params);
+        for(unsigned j=0; j<this->cipher_size; ++j){
+            bootsSymEncrypt(&this->template_cipher[i][j], (this->template_client[i]>>i)&1, this->key);
+        }
+    }
+}
+
+void Client::encryptSamples(){
+    for(unsigned i=0; i<this->size; ++i){
+        this->sample_true_cipher[i] = new_gate_bootstrapping_ciphertext_array(this->cipher_size, this->params);
+        this->sample_false_cipher[i] = new_gate_bootstrapping_ciphertext_array(this->cipher_size, this->params);
+        for(unsigned j=0; j<this->cipher_size; ++j){
+            bootsSymEncrypt(&this->sample_true_cipher[i][j], (this->sample_true[i]>>i)&1, this->key);
+            bootsSymEncrypt(&this->sample_false_cipher[i][j], (this->sample_false[i]>>i)&1, this->key);
+        }
+    }  
+
+}
+
 void Client::sendTemplate(Server& server){
     server.setTemplate(this->template_cipher);
 }
@@ -44,29 +81,4 @@ void Client::setIdToken(int token){
 
 void Client::sendDecToken(Server& server){
     server.setMatchingResult(this->matching_result);
-}
-
-void Client::encryptVectors() {
-    for(unsigned i=0; i<size; ++i){
-    template_cipher[i] = new_gate_bootstrapping_ciphertext_array(cipher_size, params);
-    sample_true_cipher[i] = new_gate_bootstrapping_ciphertext_array(cipher_size, params);
-    sample_false_cipher[i] = new_gate_bootstrapping_ciphertext_array(cipher_size, params);
-    for(unsigned j=0; j<cipher_size; ++j){
-        bootsSymEncrypt(&template_cipher[i][j], (template_client[i]>>i)&1, key);
-        bootsSymEncrypt(&sample_true_cipher[i][j], (sample_true[i]>>i)&1, key);
-        bootsSymEncrypt(&sample_false_cipher[i][j], (sample_false[i]>>i)&1, key);
-    }
-}
-
-}
-
-void Client::initVectors() {
-   // Initialize biometric vectors
-    for (unsigned i = 0; i < size; ++i) {
-        //srand(time(NULL)*i^3);  //srand used to seed the random generator
-        template_client[i] =  rand() %m-1;
-        sample_true[i] = template_client[i] + 1;
-        // srand(time(NULL)+i);
-        sample_false[i] = rand() %m;
-    } 
 }

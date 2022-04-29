@@ -29,6 +29,10 @@ public:
     Client(/* args */);
     TFheGateBootstrappingParameterSet* getParams();
     const TFheGateBootstrappingCloudKeySet* getCloudKey();
+    void initTemplate();
+    void initSamples();
+    void encryptTemplate();
+    void encryptSamples();
     // void keyGeneration(); // ! fixme return (sk, pk) pair
     // LweSample* getTemplate();
     // LweSample* getTrueSample();
@@ -40,9 +44,7 @@ public:
     void sendTrueSample(Server& server);
     void sendFalseSample(Server& server);
     void sendDecToken(Server& server);
-    void templateEncryption();
-    void initVectors();
-    void encryptVectors();
+
     ~Client();
 };
 

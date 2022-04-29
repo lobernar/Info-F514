@@ -22,11 +22,12 @@ private:
     LweSample** sample_client;
     int matching_result;
     LweSample* matching_result_cipher;
-    LweSample* b;
     unsigned r_0;
     unsigned r_1;
     LweSample* r_0_cipher;
     LweSample* r_1_cipher;
+    LweSample* result_f;
+    LweSample* result_g;
     int id_token;
 
 public:
@@ -35,12 +36,12 @@ public:
     void setTemplate(LweSample* templ[]);
     void setSample(LweSample* sample[]);
     void setMatchingResult(int token);
-    void initRandomNumbers();
-    void computeF(LweSample* result_b, LweSample* x[], LweSample* y[]);
-    void computeG(LweSample* result, LweSample* b, LweSample* r0, LweSample* r1);
+    void initAndEncRandomNumbers();
+    void computeF();
+    void computeG();
     void sendMatchingToken(Client& client);
+    void identifyUser();
     void sendIdToken(Client& client);
-    void identifyUser(Client& client);
 };
 
 #endif

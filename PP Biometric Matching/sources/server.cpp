@@ -18,7 +18,7 @@ void Server::setSample(LweSample* sample[]){
     this->sample_client = sample;
 }
 
-void Server::initRandomNumbers(){
+void Server::initAndEncRandomNumbers(){
     // Generate 2 random numbers
     this->r_0 = rand()%m;
     this->r_1 = rand()%m;
@@ -31,16 +31,16 @@ void Server::initRandomNumbers(){
     }
 }
 
-void Server::computeF(LweSample* result, LweSample* x[], LweSample* y[]){
+void Server::computeF(){
     LweSample* match_lim_cipher = new_gate_bootstrapping_ciphertext_array(max_bitsize, params);
     for (int i=0; i < max_bitsize; i++) {
         bootsSymEncrypt(&match_lim_cipher[i], (this->match_lim>>i)&1, key);
     }
-    f(result, x, y, match_lim_cipher, this->cipher_size, this->cloud_key);
+    f(this->result_f, this->template_client, this->sample_client, match_lim_cipher, this->cipher_size, this->cloud_key);
 }
 
-void Server::computeG(LweSample* result, LweSample* b, LweSample* r0, LweSample* r1){
-    g(result, b, r0, r1, this->cipher_size, this->cloud_key);
+void Server::computeG(){
+    g(this->result_g, this->result_f, this->r_0_cipher, this->r_1_cipher, this->cipher_size, this->cloud_key);
 }
 
 void Server::sendMatchingToken(Client& client){
@@ -55,10 +55,9 @@ void Server::setMatchingResult(int token){
     this->matching_result = token;
 }
 
-void Server::identifyUser(Client& client){
+void Server::identifyUser(){
     // Accept user
     if(this->matching_result == this->r_1) this->id_token = 1;
     // Reject user
     else this->id_token = 0;
-    this->sendIdToken(client);
 }
