@@ -13,11 +13,22 @@ Client::~Client(){
     delete this->template_client;
     delete this->sample_false;
     delete this->sample_true;
+    for (unsigned i = 0; i < this->size; ++i) {
+        delete_gate_bootstrapping_ciphertext_array(this->cipher_size, this->template_cipher[i]);
+        delete_gate_bootstrapping_ciphertext_array(this->cipher_size, this->sample_true_cipher[i]);
+        delete_gate_bootstrapping_ciphertext_array(this->cipher_size, this->sample_false_cipher[i]);
+    }
+    delete_gate_bootstrapping_secret_keyset(this->key);
+    delete_gate_bootstrapping_parameters(this->params); 
 }
 
 const TFheGateBootstrappingCloudKeySet* Client::getCloudKey(){ return this->cloud_key;}
 
 TFheGateBootstrappingParameterSet* Client::getParams() {return this->params;}
+
+void Client::setIdToken(int token){
+    this->id_token = token;
+}
 
 void Client::initTemplate(){
     for (unsigned i = 0; i < this->size; ++i) {
@@ -56,6 +67,13 @@ void Client::encryptSamples(){
 
 }
 
+void Client::decryptMatchingResult(LweSample* token){
+    for (int i=0; i<this->cipher_size; i++) {
+        int ai = bootsSymDecrypt(&token[i], this->key);
+        this->matching_result |= (ai<<i);
+    }
+}
+
 void Client::sendTemplate(Server& server){
     server.setTemplate(this->template_cipher);
 }
@@ -66,17 +84,6 @@ void Client::sendTrueSample(Server& server){
 
 void Client::sendFalseSample(Server& server){
     server.setSample(this->sample_false_cipher);
-}
-
-void Client::decryptMatchingResult(LweSample* token){
-    for (int i=0; i<this->cipher_size; i++) {
-        int ai = bootsSymDecrypt(&token[i], this->key);
-        this->matching_result |= (ai<<i);
-    }
-}
-
-void Client::setIdToken(int token){
-    this->id_token = token;
 }
 
 void Client::sendDecToken(Server& server){

@@ -6,10 +6,8 @@
 #include "../sources/circuits.cpp"
 #include "client.hpp"
 
-class Server
-{
+class Server{
 private:
-    /* data */
     const unsigned size = 128;  // Biometric vector length
     const unsigned m = 256;  // plaintext space Z_m
     const unsigned cipher_size = 8; // size of the ciphertext

@@ -5,10 +5,8 @@
 #include <iostream>
 #include "server.hpp"
 
-class Client
-{
+class Client{
 private:
-    /* data */
     const int sec_param = 110;  // Security parameter
     const unsigned size = 128;  // Biometric vector length
     const unsigned m = 256;  // plaintext space Z_m
@@ -26,26 +24,20 @@ private:
     int id_token;
 
 public:
-    Client(/* args */);
-    TFheGateBootstrappingParameterSet* getParams();
+    Client();
+    ~Client();
     const TFheGateBootstrappingCloudKeySet* getCloudKey();
+    TFheGateBootstrappingParameterSet* getParams();
+    void setIdToken(int token);
     void initTemplate();
     void initSamples();
     void encryptTemplate();
     void encryptSamples();
-    // void keyGeneration(); // ! fixme return (sk, pk) pair
-    // LweSample* getTemplate();
-    // LweSample* getTrueSample();
-    // LweSample* getFalseSample();
-    // int getMatchingResult();
     void decryptMatchingResult(LweSample* token);
-    void setIdToken(int token);
     void sendTemplate(Server& server);
     void sendTrueSample(Server& server);
     void sendFalseSample(Server& server);
-    void sendDecToken(Server& server);
-
-    ~Client();
+    void sendDecToken(Server& server);   
 };
 
 #endif
