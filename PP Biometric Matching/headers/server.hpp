@@ -3,7 +3,7 @@
 #include <tfhe/tfhe.h>
 #include <tfhe/tfhe_io.h>
 #include <iostream>
-#include "../sources/circuits.cpp"
+#include "../sources/circuits.cpp" // TODO: make circuits.hpp file
 #include "client.hpp"
 
 class Server{

@@ -1,60 +1,8 @@
 #include <tfhe/tfhe_gate_bootstrapping_functions.h>
 
-
-void f(LweSample* result_b, LweSample* a[], LweSample* b[], LweSample* bound_match, const int bitsize, const TFheGateBootstrappingCloudKeySet* cloud_key){
-
-}
-
-void g(LweSample* result, LweSample* b, LweSample* r0, LweSample* r1, const int bitsize, const TFheGateBootstrappingCloudKeySet* cloud_key){
-
-}
-
-/*
- * CIPHERTEXT IMPLEMENTATION ONLY 
- * n-bit addition
-
-void add1Bit(LweSample* result, LweSample* a, LweSample* b, LweSample* carry, const TFheGateBootstrappingCloudKeySet* cloud_key){
-    LweSample* tmp = new_gate_bootstrapping_ciphertext_array(1, cloud_key->params);
-    LweSample* a_carry = new_gate_bootstrapping_ciphertext_array(1, cloud_key->params);
-    LweSample* b_carry = new_gate_bootstrapping_ciphertext_array(1, cloud_key->params);
-
-    // Add a, b and carry
-    bootsXOR(&tmp[0], a, b, cloud_key);
-    bootsXOR(result, &tmp[0], carry, cloud_key);
-
-    // a AND b
-    bootsAND(&tmp[0], a, b, cloud_key);
-    // a AND carry_in
-    bootsAND(&a_carry[0], a, carry, cloud_key);
-    // b AND carry_in
-    bootsAND(&b_carry[0], b, carry, cloud_key);
-    // (a AND b) XOR (a AND carry_in)
-    bootsXOR(carry, &tmp[0], a_carry, cloud_key);
-    // (a AND b) XOR (a AND carry_in) XOR (b AND carry_in)
-    bootsXOR(&tmp[0], carry, b_carry, cloud_key);
-    bootsCOPY(carry, &tmp[0], cloud_key);
-
-    delete_gate_bootstrapping_ciphertext_array(1, tmp);
-    delete_gate_bootstrapping_ciphertext_array(1, a_carry);
-    delete_gate_bootstrapping_ciphertext_array(1, b_carry);
-}
-
-void addNNbit(LweSample* result, LweSample* a, LweSample* b, LweSample* carry, const int bitsize, const TFheGateBootstrappingCloudKeySet* cloud_key){
-    // LweSample* carry = new_gate_bootstrapping_ciphertext_array(1, cloud_key->params); // ? same variable
-    carry = new_gate_bootstrapping_ciphertext_array(1, cloud_key->params);
-    // Assign 0 to carry
-    bootsCONSTANT(&carry[0], 0, cloud_key);
-
-    for(int i=0; i<bitsize; ++i){
-        add1Bit(&result[i], &a[i], &b[i], &carry[0], cloud_key);
-    }
-
-    delete_gate_bootstrapping_ciphertext_array(1, carry);
-}
-*/
-
 /*
  * Ciphertext functions
+ */
 // Addition of 1-bit sample
 void bootsADD1bit(LweSample* result, LweSample* a, LweSample* b, LweSample* carry, const TFheGateBootstrappingCloudKeySet* cloud_key){
     LweSample* tmp = new_gate_bootstrapping_ciphertext_array(1, cloud_key->params);
@@ -322,17 +270,10 @@ void minimum(LweSample* result, LweSample* bit, const LweSample* a, const LweSam
  * The result is in the [nslots-1] slot of the decrypted ciphertext "result"
  * For now, this is not robust. If some coefficients of ctxt_b decrypted are smaller than those of ctxt_a,
  * then the result is negative, then exponentiate and then wrong. Need to do something about it
- *
-void HE_ManhattanDistance(LweSample* result, vector<LweSample*> a, vector<LweSample*> b, const int bitsize, const TFheGateBootstrappingCloudKeySet* cloud_key) {
-    if (a.empty())
-        perror("One of the ciphertext is empty in a Manhattan distance\n");
-    if (b.empty())
-        perror("One of the ciphertext is empty in a Manhattan distance\n");
-    if (a.size() != b.size())
-        perror("The two ciphertexts do not have the same size in a Manhattan distance\n");
+ */
+void HE_ManhattanDistance(LweSample* result, LweSample* a[], LweSample* b[], const int bitsize, const TFheGateBootstrappingCloudKeySet* cloud_key) {
 
-
-    int nb_samples = a.size();
+    int nb_samples = 128;  
 
     LweSample* tmp_diff = new_gate_bootstrapping_ciphertext_array(bitsize+1, cloud_key->params);
     LweSample* tmp_sum = new_gate_bootstrapping_ciphertext_array(bitsize+1, cloud_key->params);
@@ -362,16 +303,11 @@ void HE_ManhattanDistance(LweSample* result, vector<LweSample*> a, vector<LweSam
  * Calcul of the square Euclidean Distance between two ciphertexts
  * Lacks of correctness again
  *
-void HE_EuclideanDistance(LweSample* result, vector<LweSample*> a, vector<LweSample*> b, const int bitsize, const TFheGateBootstrappingCloudKeySet* cloud_key){
-    if (a.empty())
-        perror("One of the ciphertext is empty in a Manhattan distance\n");
-    if (b.empty())
-        perror("One of the ciphertext is empty in a Manhattan distance\n");
-    if (a.size() != b.size())
-        perror("The two ciphertexts do not have the same size in a Manhattan distance\n");
+ */
+void HE_EuclideanDistance(LweSample* result, LweSample* a[], LweSample* b[], const int bitsize, const TFheGateBootstrappingCloudKeySet* cloud_key){
 
-    int nb_samples = a.size();
-    const int max_bitsize = 24;
+    int nb_samples = 128;
+    const int max_bitsize = 24; // the final result will be on 24 bits, in order to ensure correctness of the euclidian distance
 
     LweSample* tmp_diff = new_gate_bootstrapping_ciphertext_array(bitsize+1, cloud_key->params);
     LweSample* tmp_diff2 = new_gate_bootstrapping_ciphertext_array(bitsize+1, cloud_key->params);
@@ -406,9 +342,9 @@ void HE_EuclideanDistance(LweSample* result, vector<LweSample*> a, vector<LweSam
  *
  *
  *
-
+*/
 // f(s, t) = b
-void Function_f(LweSample* result_b, vector<LweSample*> a, vector<LweSample*> b, LweSample* bound_match, const int bitsize, const TFheGateBootstrappingCloudKeySet* cloud_key)
+void f(LweSample* result_b, LweSample* a[], LweSample* b[], LweSample* bound_match, const int bitsize, const TFheGateBootstrappingCloudKeySet* cloud_key)
 {
     LweSample* ed = new_gate_bootstrapping_ciphertext_array(bitsize*3, cloud_key->params);
     LweSample* tmp_min = new_gate_bootstrapping_ciphertext_array(bitsize*3, cloud_key->params);
@@ -419,7 +355,7 @@ void Function_f(LweSample* result_b, vector<LweSample*> a, vector<LweSample*> b,
 }
 
 // g(b, r0, r1) = (1 - b) * r0 + b * r1
-void Function_g(LweSample* result, LweSample* result_b, LweSample* r0, LweSample* r1, const int bitsize, const TFheGateBootstrappingCloudKeySet* cloud_key)
+void g(LweSample* result, LweSample* result_b, LweSample* r0, LweSample* r1, const int bitsize, const TFheGateBootstrappingCloudKeySet* cloud_key)
 {
     LweSample* one = new_gate_bootstrapping_ciphertext_array(bitsize, cloud_key->params);
     LweSample* tmp_carry = new_gate_bootstrapping_ciphertext_array(1, cloud_key->params);
@@ -447,5 +383,3 @@ void Function_g(LweSample* result, LweSample* result_b, LweSample* r0, LweSample
     delete_gate_bootstrapping_ciphertext_array(bitsize*3, tmp_result);
     delete_gate_bootstrapping_ciphertext_array(1, tmp_carry);
 }
-
-*/

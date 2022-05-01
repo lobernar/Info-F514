@@ -5,8 +5,7 @@
 #include <tfhe/tfhe.h>
 #include <tfhe/tfhe_io.h>
 #include <iostream>
-
-#include "circuits.cpp"
+#include <chrono>
 
 #include "../headers/client.hpp"
 #include "../headers/server.hpp"
