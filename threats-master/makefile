@@ -9,7 +9,7 @@ test:
 run:
 	./main.o
 
-run:
+run-test:
 	./main-test.o
 
 val:
