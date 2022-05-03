@@ -271,7 +271,7 @@ void minimum(LweSample* result, LweSample* bit, const LweSample* a, const LweSam
  * For now, this is not robust. If some coefficients of ctxt_b decrypted are smaller than those of ctxt_a,
  * then the result is negative, then exponentiate and then wrong. Need to do something about it
  */
-void HE_ManhattanDistance(LweSample* result, LweSample* a[], LweSample* b[], const int bitsize, const TFheGateBootstrappingCloudKeySet* cloud_key) {
+void HE_ManhattanDistance(LweSample* result, LweSample** a, LweSample** b, const int bitsize, const TFheGateBootstrappingCloudKeySet* cloud_key) {
 
     int nb_samples = 128;  
 
@@ -304,7 +304,7 @@ void HE_ManhattanDistance(LweSample* result, LweSample* a[], LweSample* b[], con
  * Lacks of correctness again
  *
  */
-void HE_EuclideanDistance(LweSample* result, LweSample* a[], LweSample* b[], const int bitsize, const TFheGateBootstrappingCloudKeySet* cloud_key){
+void HE_EuclideanDistance(LweSample* result, LweSample** a, LweSample** b, const int bitsize, const TFheGateBootstrappingCloudKeySet* cloud_key){
 
     int nb_samples = 128;
     const int max_bitsize = 24; // the final result will be on 24 bits, in order to ensure correctness of the euclidian distance
@@ -344,11 +344,11 @@ void HE_EuclideanDistance(LweSample* result, LweSample* a[], LweSample* b[], con
  *
 */
 // f(s, t) = b
-void f(LweSample* result_b, LweSample* a[], LweSample* b[], LweSample* bound_match, const int bitsize, const TFheGateBootstrappingCloudKeySet* cloud_key)
+void f(LweSample* result_b, LweSample** a, LweSample** b, LweSample* bound_match, const int bitsize, const TFheGateBootstrappingCloudKeySet* cloud_key)
 {
     LweSample* ed = new_gate_bootstrapping_ciphertext_array(bitsize*3, cloud_key->params);
     LweSample* tmp_min = new_gate_bootstrapping_ciphertext_array(bitsize*3, cloud_key->params);
-    HE_ManhattanDistance(ed, a, b, bitsize, cloud_key);
+    HE_EuclideanDistance(ed, a, b, bitsize, cloud_key);
     minimum(tmp_min, result_b, ed, bound_match, bitsize*3, cloud_key);
     delete_gate_bootstrapping_ciphertext_array(bitsize*3, ed);
     delete_gate_bootstrapping_ciphertext_array(bitsize*3, tmp_min);

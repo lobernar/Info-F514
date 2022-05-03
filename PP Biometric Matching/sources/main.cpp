@@ -41,16 +41,16 @@ void computation(Client& client, Server& server, bool sample) {
 
     // // server computations
     server.computeF();
-    // server.initAndEncRandomNumbers();
-    // server.computeG();
+    server.initAndEncRandomNumbers();
+    server.computeG();
 
-    // // sending y' : server -> client
-    // server.sendMatchingToken(client);
-    // // sending y : client -> server
-    // client.sendDecToken(server);
-    // // sending r : server -> client
-    // server.identifyUser();
-    // server.sendIdToken(client);
+    // sending y' : server -> client
+    server.sendMatchingToken(client);
+    // sending y : client -> server
+    client.sendDecToken(server);
+    // sending r : server -> client
+    server.identifyUser();
+    server.sendIdToken(client);
     std::cout << "SUSHI" << std::endl;
 }
 
