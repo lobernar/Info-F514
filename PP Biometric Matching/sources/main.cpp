@@ -1,7 +1,3 @@
-/*
-#To compile the code (after modifying .bashrc file):
-#   g++ main.cpp -o main -ltfhe-spqlios-fma 
-*/
 #include <tfhe/tfhe.h>
 #include <tfhe/tfhe_io.h>
 #include <iostream>

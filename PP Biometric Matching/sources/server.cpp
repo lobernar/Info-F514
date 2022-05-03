@@ -3,7 +3,6 @@
 Server::Server(TFheGateBootstrappingParameterSet* params, const TFheGateBootstrappingCloudKeySet* key){
     this->params = params;
     this->cloud_key = key;
-    this->matching_result_cipher = new_gate_bootstrapping_ciphertext_array(this->size, this->params);
 }
 
 Server::~Server(){
@@ -13,7 +12,6 @@ Server::~Server(){
     delete_gate_bootstrapping_ciphertext_array(this->size, this->result_g);
     delete_gate_bootstrapping_ciphertext_array(this->cipher_size, this->r_0_cipher);
     delete_gate_bootstrapping_ciphertext_array(this->cipher_size, this->r_1_cipher);
-    delete_gate_bootstrapping_ciphertext_array(this->cipher_size, this->matching_result_cipher);
     for (unsigned i = 0; i < this->size; ++i) {
         delete_gate_bootstrapping_ciphertext_array(this->cipher_size, this->template_client[i]);
         delete_gate_bootstrapping_ciphertext_array(this->cipher_size, this->sample_client[i]);
@@ -61,7 +59,7 @@ void Server::computeG(){
 }
 
 void Server::sendMatchingToken(Client& client){
-    client.decryptMatchingResult(this->matching_result_cipher);
+    client.decryptMatchingResult(this->result_g);
 }
 
 void Server::identifyUser(){

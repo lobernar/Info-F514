@@ -5,6 +5,7 @@
 #include <iostream>
 #include "server.hpp"
 
+class Server;
 class Client{
 private:
     const int sec_param = 110;  // Security parameter

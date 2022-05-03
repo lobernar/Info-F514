@@ -6,6 +6,7 @@
 #include "../sources/circuits.cpp" // TODO: make circuits.hpp file
 #include "client.hpp"
 
+class Client;
 class Server{
 private:
     const unsigned size = 128;  // Biometric vector length
@@ -19,7 +20,6 @@ private:
     LweSample** template_client;
     LweSample** sample_client;
     int matching_result;
-    LweSample* matching_result_cipher;
     unsigned r_0;
     unsigned r_1;
     LweSample* r_0_cipher;

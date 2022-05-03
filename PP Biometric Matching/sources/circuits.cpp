@@ -1,3 +1,6 @@
+#include <tfhe/tfhe.h>
+#include <tfhe/tfhe_io.h>
+#include <tfhe/tfhe_core.h>
 #include <tfhe/tfhe_gate_bootstrapping_functions.h>
 
 /*
