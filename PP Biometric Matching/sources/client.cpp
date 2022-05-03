@@ -1,25 +1,22 @@
 #include "../headers/client.hpp"
 
 Client::Client(){
-    this->template_client = new int[size];
-    this->sample_false = new int[size];
-    this->sample_true = new int[size];
-    this->template_cipher = new LweSample* [this->size];
-    this->sample_true_cipher = new LweSample* [this->size];
-    this->sample_false_cipher = new LweSample* [this->size];
-    this->params = new_default_gate_bootstrapping_parameters(sec_param);
+    this->params = new_default_gate_bootstrapping_parameters(minimum_lambda);
     this->key = new_random_gate_bootstrapping_secret_keyset(params);
+    this->template_client = std::vector<uint8_t>(this->nslots);
+    this->sample_client_false = std::vector<uint8_t>(this->nslots);
+    this->sample_client_true = std::vector<uint8_t>(this->nslots);
+    this->enc_template_client = std::vector<LweSample*>(nslots);
+    this->enc_sample_client_false = std::vector<LweSample*>(nslots);
+    this->enc_sample_client_true = std::vector<LweSample*>(nslots);
     this->cloud_key = &key->cloud;
 }
 
 Client::~Client(){
-    delete this->template_client;
-    delete this->sample_false;
-    delete this->sample_true;
-    for (unsigned i = 0; i < this->size; ++i) {
-        delete_gate_bootstrapping_ciphertext_array(this->cipher_size, this->template_cipher[i]);
-        delete_gate_bootstrapping_ciphertext_array(this->cipher_size, this->sample_true_cipher[i]);
-        delete_gate_bootstrapping_ciphertext_array(this->cipher_size, this->sample_false_cipher[i]);
+    for (unsigned i = 0; i < this->nslots; ++i) {
+        delete_gate_bootstrapping_ciphertext_array(this->bitsize, this->enc_template_client[i]);
+        delete_gate_bootstrapping_ciphertext_array(this->bitsize, this->enc_sample_client_true[i]);
+        delete_gate_bootstrapping_ciphertext_array(this->bitsize, this->enc_sample_client_false[i]);
     }
     delete_gate_bootstrapping_secret_keyset(this->key);
     delete_gate_bootstrapping_parameters(this->params); 
@@ -36,59 +33,59 @@ void Client::setIdToken(int token){
 }
 
 void Client::initTemplate(){
-    for (unsigned i = 0; i < this->size; ++i) {
+    for (unsigned i = 0; i < this->nslots; ++i) {
         //srand(time(NULL)*i^3);  //srand used to seed the random generator
         this->template_client[i] =  rand() %this->m-1;
     }
 }
 
 void Client::initSamples(){
-    for (unsigned i = 0; i < this->size; ++i) {
+    for (unsigned i = 0; i < this->nslots; ++i) {
         //srand(time(NULL)*i^3);  //srand used to seed the random generator
-        this->sample_true[i] = this->template_client[i] + 1;
+        this->sample_client_true[i] = this->template_client[i] + 1;
         // srand(time(NULL)+i);
-        this->sample_false[i] = rand() % this->m;
+        this->sample_client_false[i] = rand() % this->m;
     }
 }
 
 void Client::encryptTemplate(){
-    for(unsigned i=0; i<this->size; ++i){
-        this->template_cipher[i] = new_gate_bootstrapping_ciphertext_array(this->cipher_size, this->params);
-        for(unsigned j=0; j<this->cipher_size; ++j){
-            bootsSymEncrypt(&this->template_cipher[i][j], (this->template_client[i]>>i)&1, this->key);
+    for(unsigned i=0; i<this->nslots; ++i){
+        this->enc_template_client[i] = new_gate_bootstrapping_ciphertext_array(this->bitsize, this->params);
+        for(unsigned j=0; j<this->bitsize; ++j){
+            bootsSymEncrypt(&this->enc_template_client[i][j], (this->template_client[i]>>j)&1, this->key);
         }
     }
 }
 
 void Client::encryptSamples(){
-    for(unsigned i=0; i<this->size; ++i){
-        this->sample_true_cipher[i] = new_gate_bootstrapping_ciphertext_array(this->cipher_size, this->params);
-        this->sample_false_cipher[i] = new_gate_bootstrapping_ciphertext_array(this->cipher_size, this->params);
-        for(unsigned j=0; j<this->cipher_size; ++j){
-            bootsSymEncrypt(&this->sample_true_cipher[i][j], (this->sample_true[i]>>i)&1, this->key);
-            bootsSymEncrypt(&this->sample_false_cipher[i][j], (this->sample_false[i]>>i)&1, this->key);
+    for(unsigned i=0; i<this->nslots; ++i){
+        this->enc_sample_client_true[i] = new_gate_bootstrapping_ciphertext_array(this->bitsize, this->params);
+        this->enc_sample_client_false[i] = new_gate_bootstrapping_ciphertext_array(this->bitsize, this->params);
+        for(unsigned j=0; j<this->bitsize; ++j){
+            bootsSymEncrypt(&this->enc_sample_client_true[i][j], (this->sample_client_true[i]>>j)&1, this->key);
+            bootsSymEncrypt(&this->enc_sample_client_false[i][j], (this->sample_client_false[i]>>j)&1, this->key);
         }
     }  
 
 }
 
 void Client::decryptMatchingResult(LweSample* token){
-    for (int i=0; i<this->cipher_size; i++) {
+    for (int i=0; i<this->bitsize; i++) {
         int ai = bootsSymDecrypt(&token[i], this->key);
         this->matching_result |= (ai<<i);
     }
 }
 
 void Client::sendTemplate(Server& server){
-    server.setTemplate(this->template_cipher);
+    server.setTemplate(this->enc_template_client);
 }
 
 void Client::sendTrueSample(Server& server){
-    server.setSample(this->sample_true_cipher);
+    server.setSample(this->enc_sample_client_true);
 }
 
 void Client::sendFalseSample(Server& server){
-    server.setSample(this->sample_false_cipher);
+    server.setSample(this->enc_sample_client_false);
 }
 
 void Client::sendDecToken(Server& server){

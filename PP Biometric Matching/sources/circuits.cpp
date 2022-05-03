@@ -1,8 +1,22 @@
 #include "../headers/circuits.hpp"
 
+using namespace std;
+
+void printSlot64(uint64_t n)
+{
+    printf("[");
+    printf("%lu %ld ", n, n);
+    for (int i = 0; i < 64; ++i) {
+        std::cout << ((n >> i) & 1);
+    }
+    printf("]");
+}
+
 /*
- * Ciphertext functions
+ * Elementary operation on bits, such as addition substration etc.
+ *
  */
+
 // Addition of 1-bit sample
 void bootsADD1bit(LweSample* result, LweSample* a, LweSample* b, LweSample* carry, const TFheGateBootstrappingCloudKeySet* cloud_key){
     LweSample* tmp = new_gate_bootstrapping_ciphertext_array(1, cloud_key->params);
@@ -271,9 +285,16 @@ void minimum(LweSample* result, LweSample* bit, const LweSample* a, const LweSam
  * For now, this is not robust. If some coefficients of ctxt_b decrypted are smaller than those of ctxt_a,
  * then the result is negative, then exponentiate and then wrong. Need to do something about it
  */
-void HE_ManhattanDistance(LweSample* result, LweSample** a, LweSample** b, const int bitsize, const TFheGateBootstrappingCloudKeySet* cloud_key) {
+void HE_ManhattanDistance(LweSample* result, vector<LweSample*> a, vector<LweSample*> b, const int bitsize, const TFheGateBootstrappingCloudKeySet* cloud_key) {
+    if (a.empty())
+        perror("One of the ciphertext is empty in a Manhattan distance\n");
+    if (b.empty())
+        perror("One of the ciphertext is empty in a Manhattan distance\n");
+    if (a.size() != b.size())
+        perror("The two ciphertexts do not have the same size in a Manhattan distance\n");
 
-    int nb_samples = 128;  
+
+    int nb_samples = a.size();
 
     LweSample* tmp_diff = new_gate_bootstrapping_ciphertext_array(bitsize+1, cloud_key->params);
     LweSample* tmp_sum = new_gate_bootstrapping_ciphertext_array(bitsize+1, cloud_key->params);
@@ -302,12 +323,17 @@ void HE_ManhattanDistance(LweSample* result, LweSample** a, LweSample** b, const
 /*
  * Calcul of the square Euclidean Distance between two ciphertexts
  * Lacks of correctness again
- *
  */
-void HE_EuclideanDistance(LweSample* result, LweSample** a, LweSample** b, const int bitsize, const TFheGateBootstrappingCloudKeySet* cloud_key){
+void HE_EuclideanDistance(LweSample* result, vector<LweSample*> a, vector<LweSample*> b, const int bitsize, const TFheGateBootstrappingCloudKeySet* cloud_key){
+    if (a.empty())
+        perror("One of the ciphertext is empty in a Manhattan distance\n");
+    if (b.empty())
+        perror("One of the ciphertext is empty in a Manhattan distance\n");
+    if (a.size() != b.size())
+        perror("The two ciphertexts do not have the same size in a Manhattan distance\n");
 
-    int nb_samples = 128;
-    const int max_bitsize = 24; // the final result will be on 24 bits, in order to ensure correctness of the euclidian distance
+    int nb_samples = a.size();
+    const int max_bitsize = 24;
 
     LweSample* tmp_diff = new_gate_bootstrapping_ciphertext_array(bitsize+1, cloud_key->params);
     LweSample* tmp_diff2 = new_gate_bootstrapping_ciphertext_array(bitsize+1, cloud_key->params);
@@ -341,10 +367,10 @@ void HE_EuclideanDistance(LweSample* result, LweSample** a, LweSample** b, const
  * Functions of the protocol P
  *
  *
- *
-*/
+ */
+
 // f(s, t) = b
-void f(LweSample* result_b, LweSample** a, LweSample** b, LweSample* bound_match, const int bitsize, const TFheGateBootstrappingCloudKeySet* cloud_key)
+void Function_f(LweSample* result_b, vector<LweSample*> a, vector<LweSample*> b, LweSample* bound_match, const int bitsize, const TFheGateBootstrappingCloudKeySet* cloud_key)
 {
     LweSample* ed = new_gate_bootstrapping_ciphertext_array(bitsize*3, cloud_key->params);
     LweSample* tmp_min = new_gate_bootstrapping_ciphertext_array(bitsize*3, cloud_key->params);
@@ -355,7 +381,7 @@ void f(LweSample* result_b, LweSample** a, LweSample** b, LweSample* bound_match
 }
 
 // g(b, r0, r1) = (1 - b) * r0 + b * r1
-void g(LweSample* result, LweSample* result_b, LweSample* r0, LweSample* r1, const int bitsize, const TFheGateBootstrappingCloudKeySet* cloud_key)
+void Function_g(LweSample* result, LweSample* result_b, LweSample* r0, LweSample* r1, const int bitsize, const TFheGateBootstrappingCloudKeySet* cloud_key)
 {
     LweSample* one = new_gate_bootstrapping_ciphertext_array(bitsize, cloud_key->params);
     LweSample* tmp_carry = new_gate_bootstrapping_ciphertext_array(1, cloud_key->params);
@@ -382,4 +408,174 @@ void g(LweSample* result, LweSample* result_b, LweSample* r0, LweSample* r1, con
     delete_gate_bootstrapping_ciphertext_array(bitsize, tmp_r0);
     delete_gate_bootstrapping_ciphertext_array(bitsize*3, tmp_result);
     delete_gate_bootstrapping_ciphertext_array(1, tmp_carry);
+}
+
+
+/*
+ * CODE ON PLAINTEXTS
+ *
+ *
+ */
+
+// Addition of multibit sample
+uint64_t ADDNbit(uint64_t a, uint64_t b, const int bitsize){
+    uint64_t one = 1;
+    for (int i = 0; i <= bitsize; ++i) {
+        uint64_t carry = a & b;
+        a ^= b;
+        b = carry << one;
+    }
+    return a;
+}
+
+
+// Calcul of the 2's completement to do substraction
+uint64_t TwoSComplement(uint64_t a, const int bitsize){
+    uint64_t one = 1;
+    for (int i = 0; i < bitsize; ++i) {
+        a = (a ^ (one << i));
+    }
+    uint64_t tmp = ADDNbit(a, one, bitsize);
+    return tmp;
+}
+
+// Calcul of the absolute value
+uint64_t ABS(uint64_t a, const int bitsize){
+    uint64_t bitsize_64 = bitsize-1;
+    uint64_t tmp = (a >> bitsize_64);
+    uint64_t mask = 0;
+    for (int i = 0; i < bitsize; ++i) {
+        mask = (mask ^ (tmp << i));
+    }
+    tmp = ADDNbit(a, mask, bitsize);
+    return (tmp ^ mask);
+}
+
+// Cal of the subtraction
+uint64_t SUBNbit(uint64_t a, uint64_t b, const int bitsize){
+    uint64_t b_comp = TwoSComplement(b, bitsize);
+    uint64_t tmp = ADDNbit(a, b_comp, bitsize);
+    b_comp = ABS(tmp, bitsize);
+    return b_comp;
+}
+
+// Naive multiplication a * b, could be great to implement Karatsuba
+uint64_t Multiply(uint64_t a, uint64_t b, const int bitsize) {
+    uint64_t bitsize_64 = 64;
+    uint64_t one = 1;
+    uint64_t tmp_ongoing_sum = 0, tmp_and_result = 0, tmp_final_sum = 0;
+
+    for (int i = 0; i < bitsize; ++i) {
+        uint64_t tmp = b;
+        tmp = tmp << (bitsize_64 - one - i);
+        tmp = tmp >> (bitsize_64 - one);
+        uint64_t tmp_b = 0;
+        for (int j = 0; j < bitsize; ++j) {
+            tmp_b = (tmp_b ^ (tmp << j));
+        }
+        tmp_and_result = a & tmp_b;
+        tmp_and_result = tmp_and_result << i;
+        tmp_ongoing_sum = tmp_final_sum;
+        tmp_final_sum = ADDNbit(tmp_and_result, tmp_ongoing_sum, bitsize_64);
+    }
+    return tmp_final_sum;
+}
+
+/*
+* Calcul of the Manhattan Distance between two vectors of long, i.e. plaintexts
+*/
+uint64_t ManhattanDistance(vector<uint8_t> a, vector<uint8_t> b) {
+    if (a.size() != b.size())
+        perror("Manhattan Distance between two vectors of different sizes.\n");
+
+    long result = 0;
+    for(int i = 0; i < a.size(); i++)
+        result += labs(a[i] - b[i]);
+    return result;
+}
+
+/*
+ * Calcul of the Manhattan Distance between two vectors of numbers coded on 64 bits, i.e. plaintexts
+ */
+uint64_t ManhattanDistance64(vector<uint64_t> a, vector<uint64_t> b) {
+    if (a.size() != b.size())
+        perror("Manhattan Distance between two vectors of different sizes.\n");
+
+    long result = 0;
+    for(int i = 0; i < a.size(); i++)
+        result += labs(a[i] - b[i]);
+    return result;
+}
+
+/*
+ * Calcul of the square Euclidean Distance between two vectors of long, i.e. plaintexts
+ * The square root at the end is not executed as the equivalent operation on encrypted ciphertexts is too costly
+ */
+uint64_t EuclideanDistance(vector<uint8_t> a, vector<uint8_t> b) {
+    if (a.size() != b.size())
+        perror("Euclidean Distance between two vectors of different sizes.\n");
+
+    long result =0;
+    for (int i = 0; i < a.size() ; ++i)
+        result += powl(a[i] - b[i], 2);
+    //result = sqrtl(result);
+    return result;
+}
+
+/*
+ * Calcul of the square Euclidean Distance between two vectors of numbers coded on 64 bits, i.e. plaintexts
+ * The square root at the end is not executed as the equivalent operation on encrypted ciphertexts is too costly
+ */
+uint64_t EuclideanDistance64(vector<uint64_t> a, vector<uint64_t> b) {
+    if (a.size() != b.size())
+        perror("Euclidean Distance between two vectors of different sizes.\n");
+
+    long result =0;
+    for (int i = 0; i < a.size() ; ++i)
+        result += powl(a[i] - b[i], 2);
+    //result = sqrtl(result);
+    return result;
+}
+
+uint64_t ManhattanDistanceBitwise(vector<uint64_t> a, vector<uint64_t> b, const int bitsize){
+    uint64_t result = 0;
+
+    for (int i=0; i < a.size(); i++) {
+        uint64_t tmp_diff = SUBNbit(b[i], a[i], bitsize);
+        uint64_t tmp_abs = ABS(tmp_diff, bitsize);
+        uint64_t tmp_sum = result;
+        result = ADDNbit(tmp_abs, tmp_sum, bitsize);
+    }
+    return result;
+}
+
+uint64_t EuclideanDistanceBitwise(vector<uint64_t> a, vector<uint64_t> b, const int bitsize){
+    uint64_t result = 0;
+
+    for (int i=0; i < a.size(); i++) {
+        uint64_t tmp_diff = SUBNbit(b[i], a[i], bitsize);
+        uint64_t tmp_square = Multiply(tmp_diff, tmp_diff, 8);
+        uint64_t tmp_sum = result;
+        result = ADDNbit(tmp_square, tmp_sum, bitsize);
+    }
+    return result;
+}
+
+// f(s, t) = b
+uint64_t Function_f_clear(vector<uint64_t> a, vector<uint64_t> b, uint64_t bound_match_clear, const int bitsize)
+{
+    uint64_t one = 1;
+    uint64_t zero = 0;
+    uint64_t ed = EuclideanDistanceBitwise(a, b, bitsize);
+    if (ed <= bound_match_clear)
+        return one;
+    else
+        return zero;
+}
+
+// g(b, r0, r1) = (1 - b) * r0 + b * r1
+uint64_t Function_g_clear(uint64_t result_b, uint64_t r0, uint64_t r1, const int bitsize)
+{
+    uint64_t one = 1;
+    return ((one-result_b)*r0 + result_b*r1);
 }

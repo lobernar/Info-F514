@@ -3,25 +3,27 @@
 #include <tfhe/tfhe.h>
 #include <tfhe/tfhe_io.h>
 #include <iostream>
+#include <vector>
 #include "server.hpp"
 #include "circuits.hpp"
 
 class Server;
 class Client{
 private:
-    const int sec_param = 110;  // Security parameter
-    static const unsigned size = 128;  // Biometric vector length
+    const int minimum_lambda = 128;
+    static const uint32_t nslots = 128; // Biometric vector length
+    static const uint32_t bitsize = 8; //8 significant bits, however a sign bit will be used
+    static const uint32_t max_bitsize = 24; // the final result will be on 24 bits, in order to ensure correctness of the euclidian distance
     const unsigned m = 256;  // plaintext space Z_m
     TFheGateBootstrappingParameterSet* params;
     TFheGateBootstrappingSecretKeySet* key;
     const TFheGateBootstrappingCloudKeySet* cloud_key;
-    int cipher_size = 8;   // size of the ciphertext
-    int* template_client;  // Oroginal template
-    int* sample_true;  // Trustworthy user
-    int* sample_false;  // Untrustworthy user
-    LweSample** template_cipher;
-    LweSample** sample_true_cipher;
-    LweSample** sample_false_cipher;
+    std::vector<uint8_t> template_client;
+    std::vector<uint8_t> sample_client_true;
+    std::vector<uint8_t> sample_client_false;
+    std::vector<LweSample*> enc_template_client;
+    std::vector<LweSample*> enc_sample_client_true;
+    std::vector<LweSample*> enc_sample_client_false;
     int matching_result;
     int id_token;
 
