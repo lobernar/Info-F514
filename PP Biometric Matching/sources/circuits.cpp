@@ -411,171 +411,171 @@ void Function_g(LweSample* result, LweSample* result_b, LweSample* r0, LweSample
 }
 
 
-/*
- * CODE ON PLAINTEXTS
- *
- *
- */
+// /*
+//  * CODE ON PLAINTEXTS
+//  *
+//  *
+//  */
 
-// Addition of multibit sample
-uint64_t ADDNbit(uint64_t a, uint64_t b, const int bitsize){
-    uint64_t one = 1;
-    for (int i = 0; i <= bitsize; ++i) {
-        uint64_t carry = a & b;
-        a ^= b;
-        b = carry << one;
-    }
-    return a;
-}
+// // Addition of multibit sample
+// uint64_t ADDNbit(uint64_t a, uint64_t b, const int bitsize){
+//     uint64_t one = 1;
+//     for (int i = 0; i <= bitsize; ++i) {
+//         uint64_t carry = a & b;
+//         a ^= b;
+//         b = carry << one;
+//     }
+//     return a;
+// }
 
 
-// Calcul of the 2's completement to do substraction
-uint64_t TwoSComplement(uint64_t a, const int bitsize){
-    uint64_t one = 1;
-    for (int i = 0; i < bitsize; ++i) {
-        a = (a ^ (one << i));
-    }
-    uint64_t tmp = ADDNbit(a, one, bitsize);
-    return tmp;
-}
+// // Calcul of the 2's completement to do substraction
+// uint64_t TwoSComplement(uint64_t a, const int bitsize){
+//     uint64_t one = 1;
+//     for (int i = 0; i < bitsize; ++i) {
+//         a = (a ^ (one << i));
+//     }
+//     uint64_t tmp = ADDNbit(a, one, bitsize);
+//     return tmp;
+// }
 
-// Calcul of the absolute value
-uint64_t ABS(uint64_t a, const int bitsize){
-    uint64_t bitsize_64 = bitsize-1;
-    uint64_t tmp = (a >> bitsize_64);
-    uint64_t mask = 0;
-    for (int i = 0; i < bitsize; ++i) {
-        mask = (mask ^ (tmp << i));
-    }
-    tmp = ADDNbit(a, mask, bitsize);
-    return (tmp ^ mask);
-}
+// // Calcul of the absolute value
+// uint64_t ABS(uint64_t a, const int bitsize){
+//     uint64_t bitsize_64 = bitsize-1;
+//     uint64_t tmp = (a >> bitsize_64);
+//     uint64_t mask = 0;
+//     for (int i = 0; i < bitsize; ++i) {
+//         mask = (mask ^ (tmp << i));
+//     }
+//     tmp = ADDNbit(a, mask, bitsize);
+//     return (tmp ^ mask);
+// }
 
-// Cal of the subtraction
-uint64_t SUBNbit(uint64_t a, uint64_t b, const int bitsize){
-    uint64_t b_comp = TwoSComplement(b, bitsize);
-    uint64_t tmp = ADDNbit(a, b_comp, bitsize);
-    b_comp = ABS(tmp, bitsize);
-    return b_comp;
-}
+// // Cal of the subtraction
+// uint64_t SUBNbit(uint64_t a, uint64_t b, const int bitsize){
+//     uint64_t b_comp = TwoSComplement(b, bitsize);
+//     uint64_t tmp = ADDNbit(a, b_comp, bitsize);
+//     b_comp = ABS(tmp, bitsize);
+//     return b_comp;
+// }
 
-// Naive multiplication a * b, could be great to implement Karatsuba
-uint64_t Multiply(uint64_t a, uint64_t b, const int bitsize) {
-    uint64_t bitsize_64 = 64;
-    uint64_t one = 1;
-    uint64_t tmp_ongoing_sum = 0, tmp_and_result = 0, tmp_final_sum = 0;
+// // Naive multiplication a * b, could be great to implement Karatsuba
+// uint64_t Multiply(uint64_t a, uint64_t b, const int bitsize) {
+//     uint64_t bitsize_64 = 64;
+//     uint64_t one = 1;
+//     uint64_t tmp_ongoing_sum = 0, tmp_and_result = 0, tmp_final_sum = 0;
 
-    for (int i = 0; i < bitsize; ++i) {
-        uint64_t tmp = b;
-        tmp = tmp << (bitsize_64 - one - i);
-        tmp = tmp >> (bitsize_64 - one);
-        uint64_t tmp_b = 0;
-        for (int j = 0; j < bitsize; ++j) {
-            tmp_b = (tmp_b ^ (tmp << j));
-        }
-        tmp_and_result = a & tmp_b;
-        tmp_and_result = tmp_and_result << i;
-        tmp_ongoing_sum = tmp_final_sum;
-        tmp_final_sum = ADDNbit(tmp_and_result, tmp_ongoing_sum, bitsize_64);
-    }
-    return tmp_final_sum;
-}
+//     for (int i = 0; i < bitsize; ++i) {
+//         uint64_t tmp = b;
+//         tmp = tmp << (bitsize_64 - one - i);
+//         tmp = tmp >> (bitsize_64 - one);
+//         uint64_t tmp_b = 0;
+//         for (int j = 0; j < bitsize; ++j) {
+//             tmp_b = (tmp_b ^ (tmp << j));
+//         }
+//         tmp_and_result = a & tmp_b;
+//         tmp_and_result = tmp_and_result << i;
+//         tmp_ongoing_sum = tmp_final_sum;
+//         tmp_final_sum = ADDNbit(tmp_and_result, tmp_ongoing_sum, bitsize_64);
+//     }
+//     return tmp_final_sum;
+// }
 
-/*
-* Calcul of the Manhattan Distance between two vectors of long, i.e. plaintexts
-*/
-uint64_t ManhattanDistance(vector<uint8_t> a, vector<uint8_t> b) {
-    if (a.size() != b.size())
-        perror("Manhattan Distance between two vectors of different sizes.\n");
+// /*
+// * Calcul of the Manhattan Distance between two vectors of long, i.e. plaintexts
+// */
+// uint64_t ManhattanDistance(vector<uint8_t> a, vector<uint8_t> b) {
+//     if (a.size() != b.size())
+//         perror("Manhattan Distance between two vectors of different sizes.\n");
 
-    long result = 0;
-    for(int i = 0; i < a.size(); i++)
-        result += labs(a[i] - b[i]);
-    return result;
-}
+//     long result = 0;
+//     for(int i = 0; i < a.size(); i++)
+//         result += labs(a[i] - b[i]);
+//     return result;
+// }
 
-/*
- * Calcul of the Manhattan Distance between two vectors of numbers coded on 64 bits, i.e. plaintexts
- */
-uint64_t ManhattanDistance64(vector<uint64_t> a, vector<uint64_t> b) {
-    if (a.size() != b.size())
-        perror("Manhattan Distance between two vectors of different sizes.\n");
+// /*
+//  * Calcul of the Manhattan Distance between two vectors of numbers coded on 64 bits, i.e. plaintexts
+//  */
+// uint64_t ManhattanDistance64(vector<uint64_t> a, vector<uint64_t> b) {
+//     if (a.size() != b.size())
+//         perror("Manhattan Distance between two vectors of different sizes.\n");
 
-    long result = 0;
-    for(int i = 0; i < a.size(); i++)
-        result += labs(a[i] - b[i]);
-    return result;
-}
+//     long result = 0;
+//     for(int i = 0; i < a.size(); i++)
+//         result += labs(a[i] - b[i]);
+//     return result;
+// }
 
-/*
- * Calcul of the square Euclidean Distance between two vectors of long, i.e. plaintexts
- * The square root at the end is not executed as the equivalent operation on encrypted ciphertexts is too costly
- */
-uint64_t EuclideanDistance(vector<uint8_t> a, vector<uint8_t> b) {
-    if (a.size() != b.size())
-        perror("Euclidean Distance between two vectors of different sizes.\n");
+// /*
+//  * Calcul of the square Euclidean Distance between two vectors of long, i.e. plaintexts
+//  * The square root at the end is not executed as the equivalent operation on encrypted ciphertexts is too costly
+//  */
+// uint64_t EuclideanDistance(vector<uint8_t> a, vector<uint8_t> b) {
+//     if (a.size() != b.size())
+//         perror("Euclidean Distance between two vectors of different sizes.\n");
 
-    long result =0;
-    for (int i = 0; i < a.size() ; ++i)
-        result += powl(a[i] - b[i], 2);
-    //result = sqrtl(result);
-    return result;
-}
+//     long result =0;
+//     for (int i = 0; i < a.size() ; ++i)
+//         result += powl(a[i] - b[i], 2);
+//     //result = sqrtl(result);
+//     return result;
+// }
 
-/*
- * Calcul of the square Euclidean Distance between two vectors of numbers coded on 64 bits, i.e. plaintexts
- * The square root at the end is not executed as the equivalent operation on encrypted ciphertexts is too costly
- */
-uint64_t EuclideanDistance64(vector<uint64_t> a, vector<uint64_t> b) {
-    if (a.size() != b.size())
-        perror("Euclidean Distance between two vectors of different sizes.\n");
+// /*
+//  * Calcul of the square Euclidean Distance between two vectors of numbers coded on 64 bits, i.e. plaintexts
+//  * The square root at the end is not executed as the equivalent operation on encrypted ciphertexts is too costly
+//  */
+// uint64_t EuclideanDistance64(vector<uint64_t> a, vector<uint64_t> b) {
+//     if (a.size() != b.size())
+//         perror("Euclidean Distance between two vectors of different sizes.\n");
 
-    long result =0;
-    for (int i = 0; i < a.size() ; ++i)
-        result += powl(a[i] - b[i], 2);
-    //result = sqrtl(result);
-    return result;
-}
+//     long result =0;
+//     for (int i = 0; i < a.size() ; ++i)
+//         result += powl(a[i] - b[i], 2);
+//     //result = sqrtl(result);
+//     return result;
+// }
 
-uint64_t ManhattanDistanceBitwise(vector<uint64_t> a, vector<uint64_t> b, const int bitsize){
-    uint64_t result = 0;
+// uint64_t ManhattanDistanceBitwise(vector<uint64_t> a, vector<uint64_t> b, const int bitsize){
+//     uint64_t result = 0;
 
-    for (int i=0; i < a.size(); i++) {
-        uint64_t tmp_diff = SUBNbit(b[i], a[i], bitsize);
-        uint64_t tmp_abs = ABS(tmp_diff, bitsize);
-        uint64_t tmp_sum = result;
-        result = ADDNbit(tmp_abs, tmp_sum, bitsize);
-    }
-    return result;
-}
+//     for (int i=0; i < a.size(); i++) {
+//         uint64_t tmp_diff = SUBNbit(b[i], a[i], bitsize);
+//         uint64_t tmp_abs = ABS(tmp_diff, bitsize);
+//         uint64_t tmp_sum = result;
+//         result = ADDNbit(tmp_abs, tmp_sum, bitsize);
+//     }
+//     return result;
+// }
 
-uint64_t EuclideanDistanceBitwise(vector<uint64_t> a, vector<uint64_t> b, const int bitsize){
-    uint64_t result = 0;
+// uint64_t EuclideanDistanceBitwise(vector<uint64_t> a, vector<uint64_t> b, const int bitsize){
+//     uint64_t result = 0;
 
-    for (int i=0; i < a.size(); i++) {
-        uint64_t tmp_diff = SUBNbit(b[i], a[i], bitsize);
-        uint64_t tmp_square = Multiply(tmp_diff, tmp_diff, 8);
-        uint64_t tmp_sum = result;
-        result = ADDNbit(tmp_square, tmp_sum, bitsize);
-    }
-    return result;
-}
+//     for (int i=0; i < a.size(); i++) {
+//         uint64_t tmp_diff = SUBNbit(b[i], a[i], bitsize);
+//         uint64_t tmp_square = Multiply(tmp_diff, tmp_diff, 8);
+//         uint64_t tmp_sum = result;
+//         result = ADDNbit(tmp_square, tmp_sum, bitsize);
+//     }
+//     return result;
+// }
 
-// f(s, t) = b
-uint64_t Function_f_clear(vector<uint64_t> a, vector<uint64_t> b, uint64_t bound_match_clear, const int bitsize)
-{
-    uint64_t one = 1;
-    uint64_t zero = 0;
-    uint64_t ed = EuclideanDistanceBitwise(a, b, bitsize);
-    if (ed <= bound_match_clear)
-        return one;
-    else
-        return zero;
-}
+// // f(s, t) = b
+// uint64_t Function_f_clear(vector<uint64_t> a, vector<uint64_t> b, uint64_t bound_match_clear, const int bitsize)
+// {
+//     uint64_t one = 1;
+//     uint64_t zero = 0;
+//     uint64_t ed = EuclideanDistanceBitwise(a, b, bitsize);
+//     if (ed <= bound_match_clear)
+//         return one;
+//     else
+//         return zero;
+// }
 
-// g(b, r0, r1) = (1 - b) * r0 + b * r1
-uint64_t Function_g_clear(uint64_t result_b, uint64_t r0, uint64_t r1, const int bitsize)
-{
-    uint64_t one = 1;
-    return ((one-result_b)*r0 + result_b*r1);
-}
+// // g(b, r0, r1) = (1 - b) * r0 + b * r1
+// uint64_t Function_g_clear(uint64_t result_b, uint64_t r0, uint64_t r1, const int bitsize)
+// {
+//     uint64_t one = 1;
+//     return ((one-result_b)*r0 + result_b*r1);
+// }
