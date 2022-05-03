@@ -3,13 +3,13 @@
 #include <tfhe/tfhe.h>
 #include <tfhe/tfhe_io.h>
 #include <iostream>
-#include "../sources/circuits.cpp" // TODO: make circuits.hpp file
+#include "circuits.hpp"
 #include "client.hpp"
 
 class Client;
 class Server{
 private:
-    const unsigned size = 128;  // Biometric vector length
+    static const unsigned size = 128;  // Biometric vector length
     const unsigned m = 256;  // plaintext space Z_m
     const unsigned cipher_size = 8; // size of the ciphertext
     const unsigned match_lim = size*2; // arbitrary choice
@@ -29,7 +29,7 @@ private:
     int id_token;
 
 public:
-    Server(TFheGateBootstrappingParameterSet* params, const TFheGateBootstrappingCloudKeySet* key);
+    Server(TFheGateBootstrappingParameterSet* params, TFheGateBootstrappingSecretKeySet* key);
     ~Server();
     void setTemplate(LweSample* templ[]);
     void setSample(LweSample* sample[]);

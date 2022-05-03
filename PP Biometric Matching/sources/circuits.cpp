@@ -1,7 +1,4 @@
-#include <tfhe/tfhe.h>
-#include <tfhe/tfhe_io.h>
-#include <tfhe/tfhe_core.h>
-#include <tfhe/tfhe_gate_bootstrapping_functions.h>
+#include "../headers/circuits.hpp"
 
 /*
  * Ciphertext functions
@@ -351,7 +348,7 @@ void f(LweSample* result_b, LweSample* a[], LweSample* b[], LweSample* bound_mat
 {
     LweSample* ed = new_gate_bootstrapping_ciphertext_array(bitsize*3, cloud_key->params);
     LweSample* tmp_min = new_gate_bootstrapping_ciphertext_array(bitsize*3, cloud_key->params);
-    HE_EuclideanDistance(ed, a, b, bitsize, cloud_key);
+    HE_ManhattanDistance(ed, a, b, bitsize, cloud_key);
     minimum(tmp_min, result_b, ed, bound_match, bitsize*3, cloud_key);
     delete_gate_bootstrapping_ciphertext_array(bitsize*3, ed);
     delete_gate_bootstrapping_ciphertext_array(bitsize*3, tmp_min);

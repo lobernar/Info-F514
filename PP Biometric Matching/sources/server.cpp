@@ -1,8 +1,12 @@
+
 #include "../headers/server.hpp"
 
-Server::Server(TFheGateBootstrappingParameterSet* params, const TFheGateBootstrappingCloudKeySet* key){
+Server::Server(TFheGateBootstrappingParameterSet* params, TFheGateBootstrappingSecretKeySet* key){
     this->params = params;
-    this->cloud_key = key;
+    this->key = key;
+    this->template_client = new LweSample* [this->size];
+    this->sample_client = new LweSample* [this->size];
+    this->cloud_key = &key->cloud;
 }
 
 Server::~Server(){
@@ -18,11 +22,11 @@ Server::~Server(){
     }
 }
 
-void Server::setTemplate(LweSample* templ[]){
+void Server::setTemplate(LweSample** templ){
     this->template_client = templ;
 }
 
-void Server::setSample(LweSample* sample[]){
+void Server::setSample(LweSample** sample){
     this->sample_client = sample;
 }
 
@@ -35,18 +39,18 @@ void Server::initAndEncRandomNumbers(){
     this->r_0 = rand()%m;
     this->r_1 = rand()%m;
     // Encrypting them
-    this->r_0_cipher = new_gate_bootstrapping_ciphertext_array(cipher_size, params);
-    this->r_1_cipher = new_gate_bootstrapping_ciphertext_array(cipher_size, params);
-    for(unsigned i=0; i<cipher_size; ++i){
-        bootsSymEncrypt(&this->r_0_cipher[i], (r_0>>i)&1, key);
-        bootsSymEncrypt(&this->r_1_cipher[i], (r_1>>i)&1, key);
+    this->r_0_cipher = new_gate_bootstrapping_ciphertext_array(this->cipher_size, this->params);
+    this->r_1_cipher = new_gate_bootstrapping_ciphertext_array(this->cipher_size, this->params);
+    for(unsigned i=0; i<this->cipher_size; ++i){
+        bootsSymEncrypt(&this->r_0_cipher[i], (this->r_0>>i)&1, this->key);
+        bootsSymEncrypt(&this->r_1_cipher[i], (this->r_1>>i)&1, this->key);
     }
 }
 
 void Server::computeF(){
-    LweSample* match_lim_cipher = new_gate_bootstrapping_ciphertext_array(max_bitsize, params);
-    for (int i=0; i < max_bitsize; i++) {
-        bootsSymEncrypt(&match_lim_cipher[i], (this->match_lim>>i)&1, key);
+    LweSample* match_lim_cipher = new_gate_bootstrapping_ciphertext_array(this->max_bitsize, this->params);
+    for (int i=0; i < this->max_bitsize; i++) {
+        bootsSymEncrypt(&match_lim_cipher[i], (match_lim>>i)&1, this->key);
     }
     this->result_f = new_gate_bootstrapping_ciphertext_array(this->max_bitsize, this->params);
     f(this->result_f, this->template_client, this->sample_client, match_lim_cipher, this->cipher_size, this->cloud_key);

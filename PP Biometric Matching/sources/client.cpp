@@ -4,8 +4,11 @@ Client::Client(){
     this->template_client = new int[size];
     this->sample_false = new int[size];
     this->sample_true = new int[size];
+    this->template_cipher = new LweSample* [this->size];
+    this->sample_true_cipher = new LweSample* [this->size];
+    this->sample_false_cipher = new LweSample* [this->size];
     this->params = new_default_gate_bootstrapping_parameters(sec_param);
-    this-> key = new_random_gate_bootstrapping_secret_keyset(params);
+    this->key = new_random_gate_bootstrapping_secret_keyset(params);
     this->cloud_key = &key->cloud;
 }
 
@@ -23,6 +26,8 @@ Client::~Client(){
 }
 
 const TFheGateBootstrappingCloudKeySet* Client::getCloudKey(){ return this->cloud_key;}
+
+TFheGateBootstrappingSecretKeySet* Client::getSecretKey() {return this->key;}
 
 TFheGateBootstrappingParameterSet* Client::getParams() {return this->params;}
 

@@ -4,12 +4,13 @@
 #include <tfhe/tfhe_io.h>
 #include <iostream>
 #include "server.hpp"
+#include "circuits.hpp"
 
 class Server;
 class Client{
 private:
     const int sec_param = 110;  // Security parameter
-    const unsigned size = 128;  // Biometric vector length
+    static const unsigned size = 128;  // Biometric vector length
     const unsigned m = 256;  // plaintext space Z_m
     TFheGateBootstrappingParameterSet* params;
     TFheGateBootstrappingSecretKeySet* key;
@@ -28,6 +29,7 @@ public:
     Client();
     ~Client();
     const TFheGateBootstrappingCloudKeySet* getCloudKey();
+    TFheGateBootstrappingSecretKeySet* getSecretKey();
     TFheGateBootstrappingParameterSet* getParams();
     void setIdToken(int token);
     void initTemplate();
