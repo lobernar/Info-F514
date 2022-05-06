@@ -15,6 +15,7 @@ private:
     static const uint32_t bitsize = 8; //8 significant bits, however a sign bit will be used
     static const uint32_t max_bitsize = 24; // the final result will be on 24 bits, in order to ensure correctness of the euclidian distance
     const unsigned m = 256;  // plaintext space Z_m
+    uint64_t y = 0;
     TFheGateBootstrappingParameterSet* params;
     TFheGateBootstrappingSecretKeySet* key;
     const TFheGateBootstrappingCloudKeySet* cloud_key;
@@ -24,7 +25,6 @@ private:
     std::vector<LweSample*> enc_template_client;
     std::vector<LweSample*> enc_sample_client_true;
     std::vector<LweSample*> enc_sample_client_false;
-    int matching_result;
     int id_token;
 
 public:

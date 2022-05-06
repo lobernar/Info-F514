@@ -40,7 +40,8 @@ void computation(Client& client, Server& server, bool sample) {
         client.sendFalseSample(server);
 
 
-    // // -- server computations -- //
+    // -- server computations -- //
+    
     std::cout << "Pay respects 0" << std::endl;
     server.computeF();
     std::cout << "Pay respects 1" << std::endl;

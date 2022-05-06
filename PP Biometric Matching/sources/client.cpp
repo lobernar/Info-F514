@@ -72,7 +72,7 @@ void Client::encryptSamples(){
 void Client::decryptMatchingResult(LweSample* token){
     for (int i=0; i<this->bitsize; i++) {
         int ai = bootsSymDecrypt(&token[i], this->key);
-        this->matching_result |= (ai<<i);
+        this->y |= (ai<<i);
     }
 }
 
@@ -89,5 +89,5 @@ void Client::sendFalseSample(Server& server){
 }
 
 void Client::sendDecToken(Server& server){
-    server.setMatchingResult(this->matching_result);
+    server.setMatchingResult(this->y);
 }
