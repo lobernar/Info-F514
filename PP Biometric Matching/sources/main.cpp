@@ -41,24 +41,51 @@ void computation(Client& client, Server& server, bool sample) {
 
 
     // -- server computations -- //
-    
-    std::cout << "Pay respects 0" << std::endl;
+    std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
+    server.nBitAddition();
+    std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
+    std::cout << "Addition done in " << std::chrono::duration_cast<std::chrono::seconds> (end - begin).count() << "[s]" << std::endl;
+
+    begin = std::chrono::steady_clock::now();
+    server.twosComplement();
+    end = std::chrono::steady_clock::now();
+    std::cout << "Two's complement done in " << std::chrono::duration_cast<std::chrono::seconds> (end - begin).count() << "[s]" << std::endl;
+
+    begin = std::chrono::steady_clock::now();
+    server.absoluteValue();
+    end = std::chrono::steady_clock::now();
+    std::cout << "Absolute value done in " << std::chrono::duration_cast<std::chrono::seconds> (end - begin).count() << "[s]" << std::endl;
+
+    server.nBitSubstraction();
+    end = std::chrono::steady_clock::now();
+    std::cout << "Subtraction done in " << std::chrono::duration_cast<std::chrono::seconds> (end - begin).count() << "[s]" << std::endl;
+
+    begin = std::chrono::steady_clock::now();
+    server.nBitMultiplication();
+    end = std::chrono::steady_clock::now();
+    std::cout << "Multiplication done in " << std::chrono::duration_cast<std::chrono::seconds> (end - begin).count() << "[s]" << std::endl;
+
+    begin = std::chrono::steady_clock::now();
     server.computeF();
-    std::cout << "Pay respects 1" << std::endl;
+    end = std::chrono::steady_clock::now();
+    std::cout << "Function f computed in " << std::chrono::duration_cast<std::chrono::seconds> (end - begin).count() << "[s]" << std::endl;
+
     server.initAndEncRandomNumbers();
-    std::cout << "Pay respects 2" << std::endl;
+    begin = std::chrono::steady_clock::now();
     server.computeG();
+    end = std::chrono::steady_clock::now();
+    std::cout << "Function g computed in " << std::chrono::duration_cast<std::chrono::seconds> (end - begin).count() << "[s]" << std::endl;
 
     // // sending y' : server -> client
-    std::cout << "Pay respects 3" << std::endl;
+    std::cout << "Sending encrypted y to client" << std::endl;
     server.sendMatchingToken(client);
     // // sending y : client -> server
-    std::cout << "Pay respects 4" << std::endl;
+    std::cout << "Sending decrypted y to server" << std::endl;
     client.sendDecToken(server);
     // // sending r : server -> client
-    std::cout << "Pay respects 5" << std::endl;
+    std::cout << "Verifying identiy of user" << std::endl;
     server.identifyUser();
-    std::cout << "Pay respects 6" << std::endl;
+    std::cout << "Sending ID token to client" << std::endl;
     server.sendIdToken(client);
 }
 

@@ -81,7 +81,7 @@ void Server::nBitAddition(){
     for (int m = 0; m < max_bitsize; ++m) {
         uint8_t dec_mu = bootsSymDecrypt(&tmp[m], key);
         tmp_result |= (dec_mu << m);
-        }
+    }
     printf("The result of the addition is %lu\n", tmp_result);
 }
 
@@ -92,7 +92,7 @@ void Server::twosComplement(){
     for (int m = 0; m < max_bitsize; ++m) {
         uint8_t dec_mu = bootsSymDecrypt(&tmp[m], key);
         tmp_result |= (dec_mu << m);
-        }
+    }
     printf("The result of the two's complement is %lu\n", tmp_result);
 }
 
@@ -103,7 +103,7 @@ void Server::absoluteValue(){
     for (int m = 0; m < max_bitsize; ++m) {
         uint8_t dec_mu = bootsSymDecrypt(&tmp[m], key);
         tmp_result |= (dec_mu << m);
-        }
+    }
     printf("The result of the absolute value is %lu\n", tmp_result);
 }
 
@@ -114,7 +114,7 @@ void Server::nBitSubstraction(){
     for (int m = 0; m < max_bitsize; ++m) {
         uint8_t dec_mu = bootsSymDecrypt(&tmp[m], key);
         tmp_result |= (dec_mu << m);
-        }
+    }
     printf("The result of the substraction is %lu\n", tmp_result);
 }
 
@@ -125,7 +125,7 @@ void Server::nBitMultiplication(){
     for (int m = 0; m < max_bitsize; ++m) {
         uint8_t dec_mu = bootsSymDecrypt(&tmp[m], key);
         tmp_result |= (dec_mu << m);
-        }
+    }
     printf("The result of the multiplication is %lu\n", tmp_result);
 }
 
