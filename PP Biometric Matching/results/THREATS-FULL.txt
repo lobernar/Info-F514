@@ -1,0 +1,1224 @@
+╭─     /mnt/c/U/Szymon/Desktop/ULB/CRYPTO2/Project/threats-master/threats-master/build ───────────────   21:35:55 ─╮
+╰─❯ ./THREATS                                                                                                        ─╯
+template_client
+[171 74 56 67 95 208 225 198 20 12 141 53 3 228 138 87 207 131 5 203 216 175 96 195 215 241 72 206 209 46 177 165 66 67 254 41 36 39 36 252 110 123 215 168 223 3 110 123 77 138 213 149 152 77 202 182 250 197 140 230 4 182 44 32 40 98 104 143 244 43 209 246 34 134 236 67 187 190 25 33 37 120 164 190 125 9 88 24 240 33 176 120 148 100 39 87 206 250 142 163 156 186 120 192 83 105 238 28 245 52 187 222 108 246 130 22 185 201 65 253 214 221 75 164 134 229 217 96 ]
+sample_client_true
+[172 75 57 68 96 209 226 199 21 13 142 54 4 229 139 88 208 132 6 204 217 176 97 196 216 242 73 207 210 47 178 166 67 68 255 42 37 40 37 253 111 124 216 169 224 4 111 124 78 139 214 150 153 78 203 183 251 198 141 231 5 183 45 33 41 99 105 144 245 44 210 247 35 135 237 68 188 191 26 34 38 121 165 191 126 10 89 25 241 34 177 121 149 101 40 88 207 251 143 164 157 187 121 193 84 106 239 29 246 53 188 223 109 247 131 23 186 202 66 254 215 222 76 165 135 230 218 97 ]
+sample_client_false
+[240 80 45 29 212 159 34 216 32 234 58 225 234 190 195 167 90 77 34 19 209 149 185 224 146 150 123 129 193 176 253 204 134 123 208 86 139 45 59 223 56 231 13 51 96 182 140 229 79 5 59 168 144 46 246 130 114 144 230 75 162 0 56 178 31 4 102 199 235 196 169 173 244 171 233 131 216 132 61 146 108 107 240 40 6 137 80 230 84 3 42 201 198 151 229 6 167 173 197 4 49 82 84 239 98 223 12 194 62 18 104 210 130 250 104 210 214 54 86 191 60 27 23 149 195 168 120 1 ]
+Test of correctness of encryption/decryption
+
+Correctness succeeds.
+
+The tests on the plaintext domain will now proceed.
+Addition: 128 success, 0 fails
+Addition average time: 226 nanoseconds
+Two's complement: 128 success, 0 fails
+Two's complement average time: 237 nanoseconds
+Absolute value: 128 success, 0 fails
+Absolute value average time: 238 nanoseconds
+Subtraction: 128 success, 0 fails
+Subtraction average time: 601 nanoseconds
+Multiplication: 128 success, 0 fails
+Multiplication average time: 1346 nanoseconds
+Test of the Manhattan distance
+Manhattan distance bitwise: 124839 nanoseconds
+Manhattan distance bitwise: 1 success, 0 fails
+Test of the euclidean distance
+Euclidean distance bitwise: 270616 nanoseconds
+Euclidean distance bitwise: 1 success, 0 fails
+
+------------------------
+The protocol THREATS is tested on the plaintext domain!
+Function f bitwise: 284 microseconds
+Function g bitwise: 0 microseconds
+Client successfully authenticated to the server!
+Protocol P bitwise: 302 microseconds
+--------------------------------------
+Beginning of the tests on the ciphertext domain
+Test of the addition of 2 n-bit numbers 108 + 86
+The result is 194
+Test of the addition of 2 n-bit numbers 240 + 80
+The result is 64
+Test of the addition of 2 n-bit numbers 44 + 123
+The result is 167
+Test of the addition of 2 n-bit numbers 120 + 150
+The result is 14
+Test of the addition of 2 n-bit numbers 164 + 225
+The result is 133
+Test of the addition of 2 n-bit numbers 225 + 229
+The result is 198
+Test of the addition of 2 n-bit numbers 87 + 23
+The result is 110
+Test of the addition of 2 n-bit numbers 3 + 146
+The result is 149
+Test of the addition of 2 n-bit numbers 207 + 107
+The result is 58
+Test of the addition of 2 n-bit numbers 120 + 82
+The result is 202
+Test of the addition of 2 n-bit numbers 95 + 84
+The result is 179
+Test of the addition of 2 n-bit numbers 3 + 46
+The result is 49
+Test of the addition of 2 n-bit numbers 95 + 229
+The result is 68
+Test of the addition of 2 n-bit numbers 110 + 19
+The result is 129
+Test of the addition of 2 n-bit numbers 67 + 231
+The result is 42
+Test of the addition of 2 n-bit numbers 252 + 159
+The result is 155
+Test of the addition of 2 n-bit numbers 125 + 159
+The result is 28
+Test of the addition of 2 n-bit numbers 44 + 185
+The result is 229
+Test of the addition of 2 n-bit numbers 164 + 40
+The result is 204
+Test of the addition of 2 n-bit numbers 206 + 212
+The result is 162
+Test of the addition of 2 n-bit numbers 87 + 114
+The result is 201
+Test of the addition of 2 n-bit numbers 53 + 130
+The result is 183
+Test of the addition of 2 n-bit numbers 206 + 229
+The result is 179
+Test of the addition of 2 n-bit numbers 72 + 168
+The result is 240
+Test of the addition of 2 n-bit numbers 24 + 59
+The result is 83
+Test of the addition of 2 n-bit numbers 207 + 235
+The result is 186
+Test of the addition of 2 n-bit numbers 253 + 123
+The result is 120
+Test of the addition of 2 n-bit numbers 28 + 34
+The result is 62
+Test of the addition of 2 n-bit numbers 250 + 49
+The result is 43
+Test of the addition of 2 n-bit numbers 192 + 234
+The result is 170
+Test of the addition of 2 n-bit numbers 67 + 253
+The result is 64
+Test of the addition of 2 n-bit numbers 215 + 46
+The result is 5
+Test of the addition of 2 n-bit numbers 36 + 234
+The result is 14
+Test of the addition of 2 n-bit numbers 25 + 107
+The result is 132
+Test of the addition of 2 n-bit numbers 100 + 146
+The result is 246
+Test of the addition of 2 n-bit numbers 24 + 45
+The result is 69
+Test of the addition of 2 n-bit numbers 250 + 129
+The result is 123
+Test of the addition of 2 n-bit numbers 88 + 61
+The result is 149
+Test of the addition of 2 n-bit numbers 46 + 190
+The result is 236
+Test of the addition of 2 n-bit numbers 65 + 3
+The result is 68
+Test of the addition of 2 n-bit numbers 130 + 31
+The result is 161
+Test of the addition of 2 n-bit numbers 201 + 61
+The result is 6
+Test of the addition of 2 n-bit numbers 96 + 129
+The result is 225
+Test of the addition of 2 n-bit numbers 77 + 190
+The result is 11
+Test of the addition of 2 n-bit numbers 100 + 230
+The result is 74
+Test of the addition of 2 n-bit numbers 65 + 102
+The result is 167
+Test of the addition of 2 n-bit numbers 41 + 4
+The result is 45
+Test of the addition of 2 n-bit numbers 32 + 46
+The result is 78
+Test of the addition of 2 n-bit numbers 44 + 12
+The result is 56
+Test of the addition of 2 n-bit numbers 87 + 173
+The result is 4
+Test of the addition of 2 n-bit numbers 207 + 86
+The result is 37
+Test of the addition of 2 n-bit numbers 66 + 214
+The result is 24
+Test of the addition of 2 n-bit numbers 56 + 75
+The result is 131
+Test of the addition of 2 n-bit numbers 20 + 171
+The result is 191
+Test of the addition of 2 n-bit numbers 253 + 198
+The result is 195
+Test of the addition of 2 n-bit numbers 125 + 149
+The result is 18
+Test of the addition of 2 n-bit numbers 130 + 107
+The result is 237
+Test of the addition of 2 n-bit numbers 142 + 19
+The result is 161
+Test of the addition of 2 n-bit numbers 187 + 34
+The result is 221
+Test of the addition of 2 n-bit numbers 241 + 12
+The result is 253
+Test of the addition of 2 n-bit numbers 140 + 223
+The result is 107
+Test of the addition of 2 n-bit numbers 203 + 214
+The result is 161
+Test of the addition of 2 n-bit numbers 182 + 56
+The result is 238
+Test of the addition of 2 n-bit numbers 52 + 123
+The result is 175
+Test of the addition of 2 n-bit numbers 83 + 168
+The result is 251
+Test of the addition of 2 n-bit numbers 228 + 239
+The result is 211
+Test of the addition of 2 n-bit numbers 36 + 234
+The result is 14
+Test of the addition of 2 n-bit numbers 217 + 3
+The result is 220
+Test of the addition of 2 n-bit numbers 96 + 49
+The result is 145
+Test of the addition of 2 n-bit numbers 40 + 129
+The result is 169
+Test of the addition of 2 n-bit numbers 53 + 212
+The result is 9
+Test of the addition of 2 n-bit numbers 250 + 139
+The result is 133
+Test of the addition of 2 n-bit numbers 40 + 139
+The result is 179
+Test of the addition of 2 n-bit numbers 66 + 132
+The result is 198
+Test of the addition of 2 n-bit numbers 24 + 86
+The result is 110
+Test of the addition of 2 n-bit numbers 98 + 140
+The result is 238
+Test of the addition of 2 n-bit numbers 130 + 13
+The result is 143
+Test of the addition of 2 n-bit numbers 66 + 77
+The result is 143
+Test of the addition of 2 n-bit numbers 25 + 62
+The result is 87
+Test of the addition of 2 n-bit numbers 96 + 1
+The result is 97
+Test of the addition of 2 n-bit numbers 225 + 229
+The result is 198
+Test of the addition of 2 n-bit numbers 104 + 59
+The result is 163
+Test of the addition of 2 n-bit numbers 250 + 246
+The result is 240
+Test of the addition of 2 n-bit numbers 77 + 61
+The result is 138
+Test of the addition of 2 n-bit numbers 3 + 150
+The result is 153
+Test of the addition of 2 n-bit numbers 110 + 246
+The result is 100
+Test of the addition of 2 n-bit numbers 195 + 208
+The result is 147
+Test of the addition of 2 n-bit numbers 156 + 132
+The result is 32
+Test of the addition of 2 n-bit numbers 67 + 32
+The result is 99
+Test of the addition of 2 n-bit numbers 46 + 240
+The result is 30
+Test of the addition of 2 n-bit numbers 22 + 229
+The result is 251
+Test of the addition of 2 n-bit numbers 105 + 19
+The result is 124
+Test of the addition of 2 n-bit numbers 41 + 130
+The result is 171
+Test of the addition of 2 n-bit numbers 217 + 185
+The result is 146
+Test of the addition of 2 n-bit numbers 141 + 13
+The result is 154
+Test of the addition of 2 n-bit numbers 149 + 86
+The result is 235
+Test of the addition of 2 n-bit numbers 40 + 230
+The result is 14
+Test of the addition of 2 n-bit numbers 177 + 86
+The result is 7
+Test of the addition of 2 n-bit numbers 88 + 102
+The result is 190
+Test of the addition of 2 n-bit numbers 120 + 59
+The result is 179
+Test of the addition of 2 n-bit numbers 241 + 146
+The result is 131
+Test of the addition of 2 n-bit numbers 39 + 240
+The result is 23
+Test of the addition of 2 n-bit numbers 165 + 168
+The result is 77
+Test of the addition of 2 n-bit numbers 215 + 195
+The result is 154
+Test of the addition of 2 n-bit numbers 186 + 80
+The result is 10
+Test of the addition of 2 n-bit numbers 87 + 149
+The result is 236
+Test of the addition of 2 n-bit numbers 138 + 23
+The result is 161
+Test of the addition of 2 n-bit numbers 25 + 18
+The result is 43
+Test of the addition of 2 n-bit numbers 87 + 231
+The result is 62
+Test of the addition of 2 n-bit numbers 138 + 4
+The result is 142
+Test of the addition of 2 n-bit numbers 140 + 253
+The result is 137
+Test of the addition of 2 n-bit numbers 33 + 27
+The result is 60
+Test of the addition of 2 n-bit numbers 75 + 214
+The result is 33
+Test of the addition of 2 n-bit numbers 143 + 235
+The result is 122
+Test of the addition of 2 n-bit numbers 98 + 5
+The result is 103
+Test of the addition of 2 n-bit numbers 22 + 4
+The result is 26
+Test of the addition of 2 n-bit numbers 67 + 240
+The result is 51
+Test of the addition of 2 n-bit numbers 143 + 159
+The result is 46
+Test of the addition of 2 n-bit numbers 201 + 171
+The result is 116
+Test of the addition of 2 n-bit numbers 83 + 197
+The result is 24
+Test of the addition of 2 n-bit numbers 176 + 191
+The result is 111
+Test of the addition of 2 n-bit numbers 24 + 169
+The result is 193
+Test of the addition of 2 n-bit numbers 165 + 131
+The result is 40
+Test of the addition of 2 n-bit numbers 138 + 162
+The result is 44
+Test of the addition of 2 n-bit numbers 130 + 144
+The result is 18
+Test of the addition of 2 n-bit numbers 53 + 46
+The result is 99
+Test of the addition of 2 n-bit numbers 123 + 230
+The result is 97
+Test of the addition of 2 n-bit numbers 83 + 235
+The result is 62
+Addition: 128 success, 0 fails
+Addition average time: 6 seconds
+Test of the two's complement of a n-bit numbers 104
+The result is 152
+Test of the two's complement of a n-bit numbers 208
+The result is 48
+Test of the two's complement of a n-bit numbers 176
+The result is 80
+Test of the two's complement of a n-bit numbers 229
+The result is 27
+Test of the two's complement of a n-bit numbers 96
+The result is 160
+Test of the two's complement of a n-bit numbers 84
+The result is 172
+Test of the two's complement of a n-bit numbers 204
+The result is 52
+Test of the two's complement of a n-bit numbers 223
+The result is 33
+Test of the two's complement of a n-bit numbers 169
+The result is 87
+Test of the two's complement of a n-bit numbers 193
+The result is 63
+Test of the two's complement of a n-bit numbers 4
+The result is 252
+Test of the two's complement of a n-bit numbers 224
+The result is 32
+Test of the two's complement of a n-bit numbers 230
+The result is 26
+Test of the two's complement of a n-bit numbers 132
+The result is 124
+Test of the two's complement of a n-bit numbers 40
+The result is 216
+Test of the two's complement of a n-bit numbers 151
+The result is 105
+Test of the two's complement of a n-bit numbers 151
+The result is 105
+Test of the two's complement of a n-bit numbers 191
+The result is 65
+Test of the two's complement of a n-bit numbers 173
+The result is 83
+Test of the two's complement of a n-bit numbers 75
+The result is 181
+Test of the two's complement of a n-bit numbers 178
+The result is 78
+Test of the two's complement of a n-bit numbers 79
+The result is 177
+Test of the two's complement of a n-bit numbers 132
+The result is 124
+Test of the two's complement of a n-bit numbers 90
+The result is 166
+Test of the two's complement of a n-bit numbers 159
+The result is 97
+Test of the two's complement of a n-bit numbers 62
+The result is 194
+Test of the two's complement of a n-bit numbers 225
+The result is 31
+Test of the two's complement of a n-bit numbers 230
+The result is 26
+Test of the two's complement of a n-bit numbers 231
+The result is 25
+Test of the two's complement of a n-bit numbers 123
+The result is 133
+Test of the two's complement of a n-bit numbers 171
+The result is 85
+Test of the two's complement of a n-bit numbers 195
+The result is 61
+Test of the two's complement of a n-bit numbers 191
+The result is 65
+Test of the two's complement of a n-bit numbers 168
+The result is 88
+Test of the two's complement of a n-bit numbers 0
+The result is 0
+Test of the two's complement of a n-bit numbers 194
+The result is 62
+Test of the two's complement of a n-bit numbers 204
+The result is 52
+Test of the two's complement of a n-bit numbers 80
+The result is 176
+Test of the two's complement of a n-bit numbers 77
+The result is 179
+Test of the two's complement of a n-bit numbers 82
+The result is 174
+Test of the two's complement of a n-bit numbers 42
+The result is 214
+Test of the two's complement of a n-bit numbers 56
+The result is 200
+Test of the two's complement of a n-bit numbers 98
+The result is 158
+Test of the two's complement of a n-bit numbers 4
+The result is 252
+Test of the two's complement of a n-bit numbers 40
+The result is 216
+Test of the two's complement of a n-bit numbers 29
+The result is 227
+Test of the two's complement of a n-bit numbers 5
+The result is 251
+Test of the two's complement of a n-bit numbers 193
+The result is 63
+Test of the two's complement of a n-bit numbers 45
+The result is 211
+Test of the two's complement of a n-bit numbers 144
+The result is 112
+Test of the two's complement of a n-bit numbers 212
+The result is 44
+Test of the two's complement of a n-bit numbers 42
+The result is 214
+Test of the two's complement of a n-bit numbers 56
+The result is 200
+Test of the two's complement of a n-bit numbers 3
+The result is 253
+Test of the two's complement of a n-bit numbers 197
+The result is 59
+Test of the two's complement of a n-bit numbers 151
+The result is 105
+Test of the two's complement of a n-bit numbers 195
+The result is 61
+Test of the two's complement of a n-bit numbers 60
+The result is 196
+Test of the two's complement of a n-bit numbers 42
+The result is 214
+Test of the two's complement of a n-bit numbers 45
+The result is 211
+Test of the two's complement of a n-bit numbers 216
+The result is 40
+Test of the two's complement of a n-bit numbers 84
+The result is 172
+Test of the two's complement of a n-bit numbers 190
+The result is 66
+Test of the two's complement of a n-bit numbers 162
+The result is 94
+Test of the two's complement of a n-bit numbers 144
+The result is 112
+Test of the two's complement of a n-bit numbers 130
+The result is 126
+Test of the two's complement of a n-bit numbers 234
+The result is 22
+Test of the two's complement of a n-bit numbers 86
+The result is 170
+Test of the two's complement of a n-bit numbers 0
+The result is 0
+Test of the two's complement of a n-bit numbers 31
+The result is 225
+Test of the two's complement of a n-bit numbers 123
+The result is 133
+Test of the two's complement of a n-bit numbers 6
+The result is 250
+Test of the two's complement of a n-bit numbers 151
+The result is 105
+Test of the two's complement of a n-bit numbers 130
+The result is 126
+Test of the two's complement of a n-bit numbers 146
+The result is 110
+Test of the two's complement of a n-bit numbers 102
+The result is 154
+Test of the two's complement of a n-bit numbers 123
+The result is 133
+Test of the two's complement of a n-bit numbers 231
+The result is 25
+Test of the two's complement of a n-bit numbers 204
+The result is 52
+Test of the two's complement of a n-bit numbers 29
+The result is 227
+Test of the two's complement of a n-bit numbers 27
+The result is 229
+Test of the two's complement of a n-bit numbers 210
+The result is 46
+Test of the two's complement of a n-bit numbers 197
+The result is 59
+Test of the two's complement of a n-bit numbers 190
+The result is 66
+Test of the two's complement of a n-bit numbers 60
+The result is 196
+Test of the two's complement of a n-bit numbers 209
+The result is 47
+Test of the two's complement of a n-bit numbers 27
+The result is 229
+Test of the two's complement of a n-bit numbers 104
+The result is 152
+Test of the two's complement of a n-bit numbers 84
+The result is 172
+Test of the two's complement of a n-bit numbers 240
+The result is 16
+Test of the two's complement of a n-bit numbers 229
+The result is 27
+Test of the two's complement of a n-bit numbers 46
+The result is 210
+Test of the two's complement of a n-bit numbers 253
+The result is 3
+Test of the two's complement of a n-bit numbers 80
+The result is 176
+Test of the two's complement of a n-bit numbers 216
+The result is 40
+Test of the two's complement of a n-bit numbers 210
+The result is 46
+Test of the two's complement of a n-bit numbers 253
+The result is 3
+Test of the two's complement of a n-bit numbers 5
+The result is 251
+Test of the two's complement of a n-bit numbers 84
+The result is 172
+Test of the two's complement of a n-bit numbers 169
+The result is 87
+Test of the two's complement of a n-bit numbers 229
+The result is 27
+Test of the two's complement of a n-bit numbers 214
+The result is 42
+Test of the two's complement of a n-bit numbers 225
+The result is 31
+Test of the two's complement of a n-bit numbers 62
+The result is 194
+Test of the two's complement of a n-bit numbers 244
+The result is 12
+Test of the two's complement of a n-bit numbers 246
+The result is 10
+Test of the two's complement of a n-bit numbers 59
+The result is 197
+Test of the two's complement of a n-bit numbers 225
+The result is 31
+Test of the two's complement of a n-bit numbers 223
+The result is 33
+Test of the two's complement of a n-bit numbers 209
+The result is 47
+Test of the two's complement of a n-bit numbers 234
+The result is 22
+Test of the two's complement of a n-bit numbers 61
+The result is 195
+Test of the two's complement of a n-bit numbers 240
+The result is 16
+Test of the two's complement of a n-bit numbers 120
+The result is 136
+Test of the two's complement of a n-bit numbers 46
+The result is 210
+Test of the two's complement of a n-bit numbers 162
+The result is 94
+Test of the two's complement of a n-bit numbers 132
+The result is 124
+Test of the two's complement of a n-bit numbers 114
+The result is 142
+Test of the two's complement of a n-bit numbers 240
+The result is 16
+Test of the two's complement of a n-bit numbers 231
+The result is 25
+Test of the two's complement of a n-bit numbers 146
+The result is 110
+Test of the two's complement of a n-bit numbers 168
+The result is 88
+Test of the two's complement of a n-bit numbers 32
+The result is 224
+Test of the two's complement of a n-bit numbers 201
+The result is 55
+Test of the two's complement of a n-bit numbers 32
+The result is 224
+Test of the two's complement of a n-bit numbers 120
+The result is 136
+Test of the two's complement of a n-bit numbers 230
+The result is 26
+Test of the two's complement of a n-bit numbers 144
+The result is 112
+Two's complement: 128 success, 0 fails
+Two's complement average time: 6 seconds
+Test of the absolute value of a n-bit numbers 134
+Test of the absolute value of a n-bit numbers 162
+Test of the absolute value of a n-bit numbers 56
+Test of the absolute value of a n-bit numbers 216
+Test of the absolute value of a n-bit numbers 123
+Test of the absolute value of a n-bit numbers 193
+Test of the absolute value of a n-bit numbers 18
+Test of the absolute value of a n-bit numbers 234
+Test of the absolute value of a n-bit numbers 12
+Test of the absolute value of a n-bit numbers 54
+Test of the absolute value of a n-bit numbers 34
+Test of the absolute value of a n-bit numbers 45
+Test of the absolute value of a n-bit numbers 0
+Test of the absolute value of a n-bit numbers 61
+Test of the absolute value of a n-bit numbers 96
+Test of the absolute value of a n-bit numbers 23
+Test of the absolute value of a n-bit numbers 80
+Test of the absolute value of a n-bit numbers 140
+Test of the absolute value of a n-bit numbers 96
+Test of the absolute value of a n-bit numbers 144
+Test of the absolute value of a n-bit numbers 150
+Test of the absolute value of a n-bit numbers 32
+Test of the absolute value of a n-bit numbers 224
+Test of the absolute value of a n-bit numbers 150
+Test of the absolute value of a n-bit numbers 123
+Test of the absolute value of a n-bit numbers 229
+Test of the absolute value of a n-bit numbers 51
+Test of the absolute value of a n-bit numbers 216
+Test of the absolute value of a n-bit numbers 80
+Test of the absolute value of a n-bit numbers 171
+Test of the absolute value of a n-bit numbers 102
+Test of the absolute value of a n-bit numbers 6
+Test of the absolute value of a n-bit numbers 196
+Test of the absolute value of a n-bit numbers 167
+Test of the absolute value of a n-bit numbers 62
+Test of the absolute value of a n-bit numbers 201
+Test of the absolute value of a n-bit numbers 216
+Test of the absolute value of a n-bit numbers 225
+Test of the absolute value of a n-bit numbers 214
+Test of the absolute value of a n-bit numbers 214
+Test of the absolute value of a n-bit numbers 13
+Test of the absolute value of a n-bit numbers 134
+Test of the absolute value of a n-bit numbers 59
+Test of the absolute value of a n-bit numbers 34
+Test of the absolute value of a n-bit numbers 62
+Test of the absolute value of a n-bit numbers 159
+Test of the absolute value of a n-bit numbers 146
+Test of the absolute value of a n-bit numbers 59
+Test of the absolute value of a n-bit numbers 4
+Test of the absolute value of a n-bit numbers 31
+Test of the absolute value of a n-bit numbers 162
+Test of the absolute value of a n-bit numbers 229
+Test of the absolute value of a n-bit numbers 230
+Test of the absolute value of a n-bit numbers 169
+Test of the absolute value of a n-bit numbers 198
+Test of the absolute value of a n-bit numbers 32
+Test of the absolute value of a n-bit numbers 196
+Test of the absolute value of a n-bit numbers 49
+Test of the absolute value of a n-bit numbers 210
+Test of the absolute value of a n-bit numbers 58
+Test of the absolute value of a n-bit numbers 162
+Test of the absolute value of a n-bit numbers 12
+Test of the absolute value of a n-bit numbers 56
+Test of the absolute value of a n-bit numbers 56
+Test of the absolute value of a n-bit numbers 159
+Test of the absolute value of a n-bit numbers 77
+Test of the absolute value of a n-bit numbers 19
+Test of the absolute value of a n-bit numbers 96
+Test of the absolute value of a n-bit numbers 146
+Test of the absolute value of a n-bit numbers 132
+Test of the absolute value of a n-bit numbers 162
+Test of the absolute value of a n-bit numbers 51
+Test of the absolute value of a n-bit numbers 195
+Test of the absolute value of a n-bit numbers 51
+Test of the absolute value of a n-bit numbers 209
+Test of the absolute value of a n-bit numbers 56
+Test of the absolute value of a n-bit numbers 149
+Test of the absolute value of a n-bit numbers 234
+Test of the absolute value of a n-bit numbers 40
+Test of the absolute value of a n-bit numbers 59
+Test of the absolute value of a n-bit numbers 194
+Test of the absolute value of a n-bit numbers 90
+Test of the absolute value of a n-bit numbers 168
+Test of the absolute value of a n-bit numbers 191
+Test of the absolute value of a n-bit numbers 5
+Test of the absolute value of a n-bit numbers 129
+Test of the absolute value of a n-bit numbers 104
+Test of the absolute value of a n-bit numbers 61
+Test of the absolute value of a n-bit numbers 46
+Test of the absolute value of a n-bit numbers 235
+Test of the absolute value of a n-bit numbers 84
+Test of the absolute value of a n-bit numbers 239
+Test of the absolute value of a n-bit numbers 59
+Test of the absolute value of a n-bit numbers 209
+Test of the absolute value of a n-bit numbers 6
+Test of the absolute value of a n-bit numbers 162
+Test of the absolute value of a n-bit numbers 4
+Test of the absolute value of a n-bit numbers 182
+Test of the absolute value of a n-bit numbers 86
+Test of the absolute value of a n-bit numbers 18
+Test of the absolute value of a n-bit numbers 77
+Test of the absolute value of a n-bit numbers 204
+Test of the absolute value of a n-bit numbers 102
+Test of the absolute value of a n-bit numbers 144
+Test of the absolute value of a n-bit numbers 108
+Test of the absolute value of a n-bit numbers 5
+Test of the absolute value of a n-bit numbers 233
+Test of the absolute value of a n-bit numbers 84
+Test of the absolute value of a n-bit numbers 182
+Test of the absolute value of a n-bit numbers 234
+Test of the absolute value of a n-bit numbers 49
+Test of the absolute value of a n-bit numbers 131
+Test of the absolute value of a n-bit numbers 149
+Test of the absolute value of a n-bit numbers 224
+Test of the absolute value of a n-bit numbers 137
+Test of the absolute value of a n-bit numbers 146
+Test of the absolute value of a n-bit numbers 34
+Test of the absolute value of a n-bit numbers 0
+Test of the absolute value of a n-bit numbers 104
+Test of the absolute value of a n-bit numbers 159
+Test of the absolute value of a n-bit numbers 77
+Test of the absolute value of a n-bit numbers 49
+Test of the absolute value of a n-bit numbers 231
+Test of the absolute value of a n-bit numbers 27
+Test of the absolute value of a n-bit numbers 84
+Test of the absolute value of a n-bit numbers 149
+Test of the absolute value of a n-bit numbers 230
+Test of the absolute value of a n-bit numbers 34
+Absolute value: 128 success, 0 fails
+Absolute value average time: 6 seconds
+Test of the subtraction of two n-bit numbers 75 - 230
+The result is 155
+Test of the subtraction of two n-bit numbers 225 - 239
+The result is 14
+Test of the subtraction of two n-bit numbers 96 - 195
+The result is 99
+Test of the subtraction of two n-bit numbers 186 - 140
+The result is 46
+Test of the subtraction of two n-bit numbers 20 - 140
+The result is 120
+Test of the subtraction of two n-bit numbers 217 - 224
+The result is 7
+Test of the subtraction of two n-bit numbers 148 - 49
+The result is 99
+Test of the subtraction of two n-bit numbers 41 - 149
+The result is 108
+Test of the subtraction of two n-bit numbers 209 - 210
+The result is 1
+Test of the subtraction of two n-bit numbers 186 - 59
+The result is 127
+Test of the subtraction of two n-bit numbers 209 - 253
+The result is 44
+Test of the subtraction of two n-bit numbers 130 - 195
+The result is 65
+Test of the subtraction of two n-bit numbers 182 - 131
+The result is 51
+Test of the subtraction of two n-bit numbers 43 - 216
+The result is 173
+Test of the subtraction of two n-bit numbers 164 - 210
+The result is 46
+Test of the subtraction of two n-bit numbers 163 - 208
+The result is 45
+Test of the subtraction of two n-bit numbers 222 - 96
+The result is 126
+Test of the subtraction of two n-bit numbers 120 - 209
+The result is 89
+Test of the subtraction of two n-bit numbers 110 - 29
+The result is 81
+Test of the subtraction of two n-bit numbers 74 - 3
+The result is 71
+Test of the subtraction of two n-bit numbers 39 - 195
+The result is 156
+Test of the subtraction of two n-bit numbers 209 - 146
+The result is 63
+Test of the subtraction of two n-bit numbers 206 - 185
+The result is 21
+Test of the subtraction of two n-bit numbers 143 - 209
+The result is 66
+Test of the subtraction of two n-bit numbers 39 - 196
+The result is 157
+Test of the subtraction of two n-bit numbers 238 - 210
+The result is 28
+Test of the subtraction of two n-bit numbers 163 - 29
+The result is 134
+Test of the subtraction of two n-bit numbers 187 - 45
+The result is 142
+Test of the subtraction of two n-bit numbers 230 - 59
+The result is 171
+Test of the subtraction of two n-bit numbers 41 - 12
+The result is 29
+Test of the subtraction of two n-bit numbers 95 - 223
+The result is 128
+Test of the subtraction of two n-bit numbers 138 - 79
+The result is 59
+Test of the subtraction of two n-bit numbers 134 - 210
+The result is 76
+Test of the subtraction of two n-bit numbers 213 - 96
+The result is 117
+Test of the subtraction of two n-bit numbers 41 - 45
+The result is 4
+Test of the subtraction of two n-bit numbers 177 - 151
+The result is 26
+Test of the subtraction of two n-bit numbers 207 - 159
+The result is 48
+Test of the subtraction of two n-bit numbers 138 - 223
+The result is 85
+Test of the subtraction of two n-bit numbers 163 - 223
+The result is 60
+Test of the subtraction of two n-bit numbers 185 - 56
+The result is 129
+Test of the subtraction of two n-bit numbers 37 - 46
+The result is 9
+Test of the subtraction of two n-bit numbers 254 - 146
+The result is 108
+Test of the subtraction of two n-bit numbers 34 - 98
+The result is 64
+Test of the subtraction of two n-bit numbers 238 - 49
+The result is 189
+Test of the subtraction of two n-bit numbers 185 - 250
+The result is 65
+Test of the subtraction of two n-bit numbers 120 - 171
+The result is 51
+Test of the subtraction of two n-bit numbers 216 - 104
+The result is 112
+Test of the subtraction of two n-bit numbers 75 - 104
+The result is 29
+Test of the subtraction of two n-bit numbers 142 - 77
+The result is 65
+Test of the subtraction of two n-bit numbers 67 - 0
+The result is 189 and should be |67|
+Test of the subtraction of two n-bit numbers 33 - 185
+The result is 152
+Test of the subtraction of two n-bit numbers 134 - 23
+The result is 111
+Test of the subtraction of two n-bit numbers 250 - 151
+The result is 99
+Test of the subtraction of two n-bit numbers 246 - 0
+The result is 10 and should be |246|
+Test of the subtraction of two n-bit numbers 131 - 13
+The result is 118
+Test of the subtraction of two n-bit numbers 245 - 75
+The result is 170
+Test of the subtraction of two n-bit numbers 20 - 34
+The result is 14
+Test of the subtraction of two n-bit numbers 206 - 23
+The result is 183
+Test of the subtraction of two n-bit numbers 32 - 120
+The result is 88
+Test of the subtraction of two n-bit numbers 134 - 132
+The result is 2
+Test of the subtraction of two n-bit numbers 46 - 197
+The result is 151
+Test of the subtraction of two n-bit numbers 206 - 32
+The result is 174
+Test of the subtraction of two n-bit numbers 75 - 239
+The result is 164
+Test of the subtraction of two n-bit numbers 208 - 195
+The result is 13
+Test of the subtraction of two n-bit numbers 171 - 216
+The result is 45
+Test of the subtraction of two n-bit numbers 225 - 49
+The result is 176
+Test of the subtraction of two n-bit numbers 182 - 225
+The result is 43
+Test of the subtraction of two n-bit numbers 123 - 193
+The result is 70
+Test of the subtraction of two n-bit numbers 12 - 204
+The result is 192
+Test of the subtraction of two n-bit numbers 53 - 194
+The result is 141
+Test of the subtraction of two n-bit numbers 208 - 223
+The result is 15
+Test of the subtraction of two n-bit numbers 65 - 134
+The result is 69
+Test of the subtraction of two n-bit numbers 238 - 146
+The result is 92
+Test of the subtraction of two n-bit numbers 221 - 5
+The result is 216
+Test of the subtraction of two n-bit numbers 12 - 42
+The result is 30
+Test of the subtraction of two n-bit numbers 206 - 162
+The result is 44
+Test of the subtraction of two n-bit numbers 245 - 32
+The result is 213
+Test of the subtraction of two n-bit numbers 195 - 54
+The result is 141
+Test of the subtraction of two n-bit numbers 46 - 45
+The result is 1
+Test of the subtraction of two n-bit numbers 25 - 18
+The result is 7
+Test of the subtraction of two n-bit numbers 165 - 253
+The result is 88
+Test of the subtraction of two n-bit numbers 246 - 80
+The result is 166
+Test of the subtraction of two n-bit numbers 215 - 132
+The result is 83
+Test of the subtraction of two n-bit numbers 221 - 196
+The result is 25
+Test of the subtraction of two n-bit numbers 142 - 182
+The result is 40
+Test of the subtraction of two n-bit numbers 223 - 104
+The result is 119
+Test of the subtraction of two n-bit numbers 41 - 79
+The result is 38
+Test of the subtraction of two n-bit numbers 52 - 84
+The result is 32
+Test of the subtraction of two n-bit numbers 138 - 144
+The result is 6
+Test of the subtraction of two n-bit numbers 182 - 77
+The result is 105
+Test of the subtraction of two n-bit numbers 105 - 253
+The result is 148
+Test of the subtraction of two n-bit numbers 3 - 229
+The result is 226
+Test of the subtraction of two n-bit numbers 207 - 86
+The result is 121
+Test of the subtraction of two n-bit numbers 195 - 114
+The result is 81
+Test of the subtraction of two n-bit numbers 83 - 131
+The result is 48
+Test of the subtraction of two n-bit numbers 88 - 130
+The result is 42
+Test of the subtraction of two n-bit numbers 241 - 54
+The result is 187
+Test of the subtraction of two n-bit numbers 186 - 23
+The result is 163
+Test of the subtraction of two n-bit numbers 217 - 214
+The result is 3
+Test of the subtraction of two n-bit numbers 214 - 46
+The result is 168
+Test of the subtraction of two n-bit numbers 46 - 210
+The result is 164
+Test of the subtraction of two n-bit numbers 171 - 140
+The result is 31
+Test of the subtraction of two n-bit numbers 246 - 82
+The result is 164
+Test of the subtraction of two n-bit numbers 216 - 104
+The result is 112
+Test of the subtraction of two n-bit numbers 56 - 229
+The result is 173
+Test of the subtraction of two n-bit numbers 142 - 204
+The result is 62
+Test of the subtraction of two n-bit numbers 245 - 131
+The result is 114
+Test of the subtraction of two n-bit numbers 171 - 19
+The result is 152
+Test of the subtraction of two n-bit numbers 198 - 12
+The result is 186
+Test of the subtraction of two n-bit numbers 185 - 45
+The result is 140
+Test of the subtraction of two n-bit numbers 246 - 150
+The result is 96
+Test of the subtraction of two n-bit numbers 67 - 195
+The result is 128
+Test of the subtraction of two n-bit numbers 236 - 123
+The result is 113
+Test of the subtraction of two n-bit numbers 182 - 45
+The result is 137
+Test of the subtraction of two n-bit numbers 123 - 75
+The result is 48
+Test of the subtraction of two n-bit numbers 77 - 4
+The result is 73
+Test of the subtraction of two n-bit numbers 141 - 204
+The result is 63
+Test of the subtraction of two n-bit numbers 228 - 29
+The result is 199
+Test of the subtraction of two n-bit numbers 134 - 229
+The result is 95
+Test of the subtraction of two n-bit numbers 238 - 130
+The result is 108
+Test of the subtraction of two n-bit numbers 75 - 235
+The result is 160
+Test of the subtraction of two n-bit numbers 198 - 51
+The result is 147
+Test of the subtraction of two n-bit numbers 125 - 234
+The result is 109
+Test of the subtraction of two n-bit numbers 41 - 61
+The result is 20
+Test of the subtraction of two n-bit numbers 190 - 34
+The result is 156
+Test of the subtraction of two n-bit numbers 149 - 140
+The result is 9
+Test of the subtraction of two n-bit numbers 214 - 216
+The result is 2
+Test of the subtraction of two n-bit numbers 222 - 229
+The result is 7
+Subtraction: 126 success, 2 fails
+Subtraction average time: 22 seconds
+Test of the multiplication of two n-bit numbers 120 x 108
+The result is 12960
+Test of the multiplication of two n-bit numbers 187 x 223
+The result is 41701
+Test of the multiplication of two n-bit numbers 149 x 230
+The result is 34270
+Test of the multiplication of two n-bit numbers 108 x 182
+The result is 19656
+Test of the multiplication of two n-bit numbers 44 x 80
+The result is 3520
+Test of the multiplication of two n-bit numbers 175 x 98
+The result is 17150
+Test of the multiplication of two n-bit numbers 143 x 40
+The result is 5720
+Test of the multiplication of two n-bit numbers 56 x 34
+The result is 1904
+Test of the multiplication of two n-bit numbers 12 x 173
+The result is 2076
+Test of the multiplication of two n-bit numbers 176 x 201
+The result is 35376
+Test of the multiplication of two n-bit numbers 28 x 233
+The result is 6524
+Test of the multiplication of two n-bit numbers 123 x 18
+The result is 2214
+Test of the multiplication of two n-bit numbers 98 x 45
+The result is 4410
+Test of the multiplication of two n-bit numbers 182 x 235
+The result is 42770
+Test of the multiplication of two n-bit numbers 25 x 223
+The result is 5575
+Test of the multiplication of two n-bit numbers 213 x 234
+The result is 49842
+Test of the multiplication of two n-bit numbers 254 x 182
+The result is 46228
+Test of the multiplication of two n-bit numbers 142 x 149
+The result is 21158
+Test of the multiplication of two n-bit numbers 208 x 102
+The result is 21216
+Test of the multiplication of two n-bit numbers 141 x 29
+The result is 4089
+Test of the multiplication of two n-bit numbers 53 x 86
+The result is 4558
+Test of the multiplication of two n-bit numbers 39 x 45
+The result is 1755
+Test of the multiplication of two n-bit numbers 5 x 244
+The result is 1220
+Test of the multiplication of two n-bit numbers 39 x 80
+The result is 3120
+Test of the multiplication of two n-bit numbers 163 x 210
+The result is 34230
+Test of the multiplication of two n-bit numbers 39 x 123
+The result is 4797
+Test of the multiplication of two n-bit numbers 5 x 32
+The result is 160
+Test of the multiplication of two n-bit numbers 77 x 90
+The result is 6930
+Test of the multiplication of two n-bit numbers 201 x 216
+The result is 43416
+Test of the multiplication of two n-bit numbers 67 x 250
+The result is 16750
+Test of the multiplication of two n-bit numbers 3 x 79
+The result is 237
+Test of the multiplication of two n-bit numbers 134 x 167
+The result is 22378
+Test of the multiplication of two n-bit numbers 3 x 223
+The result is 669
+Test of the multiplication of two n-bit numbers 98 x 5
+The result is 490
+Test of the multiplication of two n-bit numbers 77 x 46
+The result is 3542
+Test of the multiplication of two n-bit numbers 3 x 56
+The result is 168
+Test of the multiplication of two n-bit numbers 110 x 182
+The result is 20020
+Test of the multiplication of two n-bit numbers 12 x 196
+The result is 2352
+Test of the multiplication of two n-bit numbers 246 x 75
+The result is 18450
+Test of the multiplication of two n-bit numbers 120 x 137
+The result is 16440
+Test of the multiplication of two n-bit numbers 168 x 56
+The result is 9408
+Test of the multiplication of two n-bit numbers 192 x 240
+The result is 46080
+Test of the multiplication of two n-bit numbers 36 x 86
+The result is 3096
+Test of the multiplication of two n-bit numbers 134 x 230
+The result is 30820
+Test of the multiplication of two n-bit numbers 221 x 198
+The result is 43758
+Test of the multiplication of two n-bit numbers 244 x 29
+^[[1;5P^[[1;5P^[[1;5P^[[1;5P^[[1;5P^[[1;5P^[[1;5P^[[1;5P^[[1;5P^[[1;5P^[[1;5P^[[1;5P^[[1;5P^[[1;5P^[[1;5P^[[1;5P^[[1;5P^
+The result is 7076
+Test of the multiplication of two n-bit numbers 123 x 208
+The result is 25584
+Test of the multiplication of two n-bit numbers 36 x 239
+The result is 8604
+Test of the multiplication of two n-bit numbers 83 x 144
+The result is 11952
+Test of the multiplication of two n-bit numbers 20 x 34
+The result is 680
+Test of the multiplication of two n-bit numbers 240 x 86
+The result is 20640
+Test of the multiplication of two n-bit numbers 171 x 46
+The result is 7866
+Test of the multiplication of two n-bit numbers 206 x 129
+The result is 26574
+Test of the multiplication of two n-bit numbers 209 x 56
+The result is 11704
+Test of the multiplication of two n-bit numbers 20 x 169
+The result is 3380
+Test of the multiplication of two n-bit numbers 131 x 107
+The result is 14017
+Test of the multiplication of two n-bit numbers 177 x 214
+The result is 37878
+Test of the multiplication of two n-bit numbers 87 x 150
+The result is 13050
+Test of the multiplication of two n-bit numbers 244 x 176
+The result is 42944
+Test of the multiplication of two n-bit numbers 108 x 239
+The result is 25812
+Test of the multiplication of two n-bit numbers 138 x 212
+The result is 29256
+Test of the multiplication of two n-bit numbers 206 x 132
+The result is 27192
+Test of the multiplication of two n-bit numbers 138 x 6
+The result is 828
+Test of the multiplication of two n-bit numbers 36 x 239
+The result is 8604
+Test of the multiplication of two n-bit numbers 120 x 246
+The result is 29520
+Test of the multiplication of two n-bit numbers 138 x 34
+The result is 4692
+Test of the multiplication of two n-bit numbers 131 x 123
+The result is 16113
+Test of the multiplication of two n-bit numbers 216 x 4
+The result is 864
+Test of the multiplication of two n-bit numbers 190 x 18
+The result is 3420
+Test of the multiplication of two n-bit numbers 39 x 168
+The result is 6552
+Test of the multiplication of two n-bit numbers 187 x 169
+The result is 31603
+Test of the multiplication of two n-bit numbers 24 x 229
+The result is 5496
+Test of the multiplication of two n-bit numbers 40 x 240
+The result is 9600
+Test of the multiplication of two n-bit numbers 164 x 169
+The result is 27716
+Test of the multiplication of two n-bit numbers 110 x 139
+The result is 15290
+Test of the multiplication of two n-bit numbers 190 x 61
+The result is 11590
+Test of the multiplication of two n-bit numbers 185 x 137
+The result is 25345
+Test of the multiplication of two n-bit numbers 98 x 130
+The result is 12740
+Test of the multiplication of two n-bit numbers 22 x 60
+The result is 1320
+Test of the multiplication of two n-bit numbers 230 x 104
+The result is 23920
+Test of the multiplication of two n-bit numbers 83 x 96
+The result is 7968
+Test of the multiplication of two n-bit numbers 206 x 58
+The result is 11948
+Test of the multiplication of two n-bit numbers 125 x 58
+The result is 7250
+Test of the multiplication of two n-bit numbers 138 x 214
+The result is 29532
+Test of the multiplication of two n-bit numbers 40 x 195
+The result is 7800
+Test of the multiplication of two n-bit numbers 201 x 84
+The result is 16884
+Test of the multiplication of two n-bit numbers 25 x 159
+The result is 3975
+Test of the multiplication of two n-bit numbers 140 x 45
+The result is 6300
+Test of the multiplication of two n-bit numbers 39 x 196
+The result is 7644
+Test of the multiplication of two n-bit numbers 250 x 86
+The result is 21500
+Test of the multiplication of two n-bit numbers 238 x 34
+The result is 8092
+Test of the multiplication of two n-bit numbers 192 x 212
+The result is 40704
+Test of the multiplication of two n-bit numbers 125 x 210
+The result is 26250
+Test of the multiplication of two n-bit numbers 230 x 42
+The result is 9660
+Test of the multiplication of two n-bit numbers 39 x 104
+The result is 4056
+Test of the multiplication of two n-bit numbers 182 x 199
+The result is 36218
+Test of the multiplication of two n-bit numbers 25 x 224
+The result is 5600
+Test of the multiplication of two n-bit numbers 142 x 84
+The result is 11928
+Test of the multiplication of two n-bit numbers 241 x 42
+The result is 10122
+Test of the multiplication of two n-bit numbers 190 x 246
+The result is 46740
+Test of the multiplication of two n-bit numbers 143 x 146
+The result is 20878
+Test of the multiplication of two n-bit numbers 36 x 6
+The result is 216
+Test of the multiplication of two n-bit numbers 138 x 131
+The result is 18078
+Test of the multiplication of two n-bit numbers 32 x 129
+The result is 4128
+Test of the multiplication of two n-bit numbers 67 x 104
+The result is 6968
+Test of the multiplication of two n-bit numbers 168 x 58
+The result is 9744
+Test of the multiplication of two n-bit numbers 12 x 79
+The result is 948
+Test of the multiplication of two n-bit numbers 185 x 199
+The result is 36815
+Test of the multiplication of two n-bit numbers 22 x 173
+The result is 3806
+Test of the multiplication of two n-bit numbers 67 x 230
+The result is 15410
+Test of the multiplication of two n-bit numbers 246 x 104
+The result is 25584
+Test of the multiplication of two n-bit numbers 168 x 4
+The result is 672
+Test of the multiplication of two n-bit numbers 24 x 108
+The result is 2592
+Test of the multiplication of two n-bit numbers 39 x 132
+The result is 5148
+Test of the multiplication of two n-bit numbers 104 x 210
+The result is 21840
+Test of the multiplication of two n-bit numbers 3 x 56
+The result is 168
+Test of the multiplication of two n-bit numbers 120 x 197
+The result is 23640
+Test of the multiplication of two n-bit numbers 164 x 34
+The result is 5576
+Test of the multiplication of two n-bit numbers 37 x 146
+The result is 5402
+Test of the multiplication of two n-bit numbers 152 x 159
+The result is 24168
+Test of the multiplication of two n-bit numbers 65 x 56
+The result is 3640
+Test of the multiplication of two n-bit numbers 246 x 173
+The result is 42558
+Test of the multiplication of two n-bit numbers 3 x 23
+The result is 69
+Test of the multiplication of two n-bit numbers 195 x 169
+The result is 32955
+Test of the multiplication of two n-bit numbers 28 x 98
+The result is 2744
+Test of the multiplication of two n-bit numbers 100 x 194
+The result is 19400
+Test of the multiplication of two n-bit numbers 77 x 210
+The result is 16170
+Test of the multiplication of two n-bit numbers 95 x 173
+The result is 16435
+Multiplication: 128 success, 0 fails
+Multiplication average time: 131 seconds
+Now we test the distances
+Test of the Manhattan distance and the Euclidean distance between two vectors of n-bit numbers
+Vector v1
+[171 74 56 67 95 208 225 198 20 12 141 53 3 228 138 87 207 131 5 203 216 175 96 195 215 241 72 206 209 46 177 165 66 67 254 41 36 39 36 252 110 123 215 168 223 3 110 123 77 138 213 149 152 77 202 182 250 197 140 230 4 182 44 32 40 98 104 143 244 43 209 246 34 134 236 67 187 190 25 33 37 120 164 190 125 9 88 24 240 33 176 120 148 100 39 87 206 250 142 163 156 186 120 192 83 105 238 28 245 52 187 222 108 246 130 22 185 201 65 253 214 221 75 164 134 229 217 96 ]
+
+Vector v2
+[172 75 57 68 96 209 226 199 21 13 142 54 4 229 139 88 208 132 6 204 217 176 97 196 216 242 73 207 210 47 178 166 67 68 255 42 37 40 37 253 111 124 216 169 224 4 111 124 78 139 214 150 153 78 203 183 251 198 141 231 5 183 45 33 41 99 105 144 245 44 210 247 35 135 237 68 188 191 26 34 38 121 165 191 126 10 89 25 241 34 177 121 149 101 40 88 207 251 143 164 157 187 121 193 84 106 239 29 246 53 188 223 109 247 131 23 186 202 66 254 215 222 76 165 135 230 218 97 ]
+
+The result shall be as follows:
+ManhattanDistance(v1,v2)= 128and
+EuclideanDistance(v1,v2)= 128
+Manhattan distance: 3205 seconds
+The result for Manhattan distance is 128 and should be 128
+Euclidean distance: 18975 seconds
+The result for Euclidean distance is 128 and should be 128
+
+------------------------
+The protocol THREATS is tested on the plaintext domain!
+The Euclidean Distance is 128 thus the client shall be authenticated
+Function f: 19059 seconds
+[1]    5666 segmentation fault  ./THREATS
+
+╭─     /mnt/c/U/Szymon/Desktop/ULB/CRYPTO2/Project/threats-master/threats-master/build ──────────────────────────────────────── ✘ SEGV   17h 36m 57s   15:15:08 ─╮ ╰─❯                                                                                                                                                                 ─╯ 
