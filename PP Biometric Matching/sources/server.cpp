@@ -159,36 +159,19 @@ void Server::euclideanDistance(){
 
 void Server::computeF(){
 
-    std::cout << "Ramen 1" << std::endl;
-
     LweSample* enc_bound_match = new_gate_bootstrapping_ciphertext_array(this->max_bitsize, this->params);
     for (int i=0; i < this->max_bitsize; i++) {
         bootsSymEncrypt(&enc_bound_match[i], (bound_match_clear>>i)&1, this->key);
     }
-
-    std::cout << "Ramen 2" << std::endl;
-
     this->enc_b = new_gate_bootstrapping_ciphertext_array(this->max_bitsize, this->params);
-
-    std::cout << "Ramen 3" << std::endl;
 
     Function_f(this->enc_b, this->enc_template_client, this->enc_sample_client, enc_bound_match, this->bitsize, this->cloud_key);
 
-    std::cout << "Ramen 4" << std::endl;
-
     delete_gate_bootstrapping_ciphertext_array(max_bitsize, enc_bound_match);
-
-    std::cout << "Ramen 5" << std::endl;
 }
 
 void Server::computeG(){
-    std::cout << "Ramen 6" << std::endl;
     this->enc_y = new_gate_bootstrapping_ciphertext_array(this->max_bitsize+1, params);
-
-    std::cout << "Ramen 7" << std::endl;
-
     Function_g(this->enc_y, this->enc_b, this->enc_r0, this->enc_r1, this->bitsize, this->cloud_key);
-
-    std::cout << "Ramen 8" << std::endl;
 }
 
