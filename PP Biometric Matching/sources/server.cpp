@@ -39,7 +39,9 @@ void Server::setMatchingResult(int token){
 }
 
 void Server::initTmp(){
+    srand(time(NULL));  // Without this, the "random" numbers are always the same
     x1 = rand() % nslots;
+    srand(time(NULL)*2);
     x2 = rand() % nslots;
     for (int i = 0; i < max_bitsize; ++i) {
         bootsCONSTANT(&tmp[i], 0, cloud_key);
@@ -48,7 +50,9 @@ void Server::initTmp(){
 
 void Server::initAndEncRandomNumbers(){
     // Generate 2 random numbers
+    srand(time(NULL));
     this->r0 = rand()%m;
+    srand(time(NULL)*(this->r0+1));
     this->r1 = rand()%m;
     // Encrypting them
     this->enc_r0 = new_gate_bootstrapping_ciphertext_array(this->bitsize, this->params);

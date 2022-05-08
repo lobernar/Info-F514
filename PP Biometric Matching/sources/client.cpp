@@ -34,16 +34,16 @@ void Client::setIdToken(int token){
 
 void Client::initTemplate(){
     for (unsigned i = 0; i < this->nslots; ++i) {
-        //srand(time(NULL)*i^3);  //srand used to seed the random generator
+        srand(time(NULL)*i^3);  //srand used to seed the random generator
         this->template_client[i] =  rand() %this->m-1;
     }
 }
 
 void Client::initSamples(){
     for (unsigned i = 0; i < this->nslots; ++i) {
-        //srand(time(NULL)*i^3);  //srand used to seed the random generator
+        srand(time(NULL)*i^3);  //srand used to seed the random generator
         this->sample_client_true[i] = this->template_client[i] + 1;
-        // srand(time(NULL)+i);
+        srand(time(NULL)+i);
         this->sample_client_false[i] = rand() % this->m;
     }
 }
