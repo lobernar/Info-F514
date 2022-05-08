@@ -160,7 +160,8 @@ void bootsSUBNbit(LweSample* result, LweSample* a, LweSample* b, const int bitsi
     }
 
     // res = tmp3 || tmp2
-    for (int i = 0; i < bitsize+1; ++i) {
+    // for (int i = 0; i < bitsize+1; ++i) {
+    for (int i = 0; i < bitsize; ++i) { // ! FIXME: QUICK SEG FAULT FIX
         bootsOR(&result[i], &tmp3[i], &tmp2[i], cloud_key);
     }
 
@@ -372,42 +373,80 @@ void HE_EuclideanDistance(LweSample* result, vector<LweSample*> a, vector<LweSam
 // f(s, t) = b
 void Function_f(LweSample* result_b, vector<LweSample*> a, vector<LweSample*> b, LweSample* bound_match, const int bitsize, const TFheGateBootstrappingCloudKeySet* cloud_key)
 {
+
+    std::cout << "Gyoza 1" << std::endl;
     LweSample* ed = new_gate_bootstrapping_ciphertext_array(bitsize*3, cloud_key->params);
+
+    std::cout << "Gyoza 2" << std::endl;
+
     LweSample* tmp_min = new_gate_bootstrapping_ciphertext_array(bitsize*3, cloud_key->params);
+
+    std::cout << "Gyoza 3" << std::endl;
+    
     HE_EuclideanDistance(ed, a, b, bitsize, cloud_key);
+    
+    std::cout << "Gyoza 4" << std::endl;
+    
     minimum(tmp_min, result_b, ed, bound_match, bitsize*3, cloud_key);
-    delete_gate_bootstrapping_ciphertext_array(bitsize*3, ed);
+    
+    std::cout << "Gyoza 5" << std::endl;
+
+    delete_gate_bootstrapping_ciphertext_array(bitsize*3, ed);    
     delete_gate_bootstrapping_ciphertext_array(bitsize*3, tmp_min);
+
+    std::cout << "Gyoza 6" << std::endl;
 }
 
 // g(b, r0, r1) = (1 - b) * r0 + b * r1
 void Function_g(LweSample* result, LweSample* result_b, LweSample* r0, LweSample* r1, const int bitsize, const TFheGateBootstrappingCloudKeySet* cloud_key)
 {
+    std::cout << "Gyoza 10" << std::endl;
     LweSample* one = new_gate_bootstrapping_ciphertext_array(bitsize, cloud_key->params);
     LweSample* tmp_carry = new_gate_bootstrapping_ciphertext_array(1, cloud_key->params);
+    std::cout << "Gyoza 11" << std::endl;
     bootsCONSTANT(&one[0], 1, cloud_key);
+    std::cout << "Gyoza 12" << std::endl;
     for (int i = 1; i < bitsize; ++i)
     {
         bootsCONSTANT(&one[i], 0, cloud_key);
     }
+    std::cout << "Gyoza 13" << std::endl;
     LweSample* tmp_r0 = new_gate_bootstrapping_ciphertext_array(bitsize, cloud_key->params);
+
     // (1 - b)
+    std::cout << "Gyoza 14" << std::endl;
     bootsSUBNbit(tmp_r0, one, result_b, bitsize, cloud_key);
+
+    std::cout << "Gyoza 15" << std::endl;
     //(1 - b) * r0
     LweSample* tmp_result = new_gate_bootstrapping_ciphertext_array(bitsize*3, cloud_key->params);
+
+    std::cout << "Gyoza 16" << std::endl;
+
     bootsMultiply(tmp_result, tmp_r0, r0, bitsize, cloud_key);
+
+    std::cout << "Gyoza 17" << std::endl;
+
     for (int i = 0; i < bitsize; ++i) {
         bootsCOPY(&tmp_r0[i], &tmp_result[i], cloud_key);
     }
+
+    std::cout << "Gyoza 18" << std::endl;
     // b * r1
     bootsMultiply(tmp_result, result_b, r1, bitsize, cloud_key);
+
+    std::cout << "Gyoza 19" << std::endl;
     // (1 - b) * r0 + b * r1
     bootsADDNbit(result, tmp_r0, tmp_result, tmp_carry, bitsize, cloud_key);
+
+    std::cout << "Gyoza 20" << std::endl;
 
     delete_gate_bootstrapping_ciphertext_array(bitsize, one);
     delete_gate_bootstrapping_ciphertext_array(bitsize, tmp_r0);
     delete_gate_bootstrapping_ciphertext_array(bitsize*3, tmp_result);
     delete_gate_bootstrapping_ciphertext_array(1, tmp_carry);
+
+    std::cout << "Gyoza 21" << std::endl;
 }
 
 
