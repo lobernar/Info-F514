@@ -160,8 +160,7 @@ void bootsSUBNbit(LweSample* result, LweSample* a, LweSample* b, const int bitsi
     }
 
     // res = tmp3 || tmp2
-    // for (int i = 0; i < bitsize+1; ++i) {
-    for (int i = 0; i < bitsize; ++i) { // ! FIXME: QUICK SEG FAULT FIX
+    for (int i = 0; i < bitsize+1; ++i) {
         bootsOR(&result[i], &tmp3[i], &tmp2[i], cloud_key);
     }
 
@@ -411,7 +410,7 @@ void Function_g(LweSample* result, LweSample* result_b, LweSample* r0, LweSample
         bootsCONSTANT(&one[i], 0, cloud_key);
     }
     std::cout << "Gyoza 13" << std::endl;
-    LweSample* tmp_r0 = new_gate_bootstrapping_ciphertext_array(bitsize, cloud_key->params);
+    LweSample* tmp_r0 = new_gate_bootstrapping_ciphertext_array(bitsize+1, cloud_key->params); //szymon: corrects seg fault in subnbit :rolling_eyes:
 
     // (1 - b)
     std::cout << "Gyoza 14" << std::endl;
@@ -442,7 +441,7 @@ void Function_g(LweSample* result, LweSample* result_b, LweSample* r0, LweSample
     std::cout << "Gyoza 20" << std::endl;
 
     delete_gate_bootstrapping_ciphertext_array(bitsize, one);
-    delete_gate_bootstrapping_ciphertext_array(bitsize, tmp_r0);
+    delete_gate_bootstrapping_ciphertext_array(bitsize+1, tmp_r0);
     delete_gate_bootstrapping_ciphertext_array(bitsize*3, tmp_result);
     delete_gate_bootstrapping_ciphertext_array(1, tmp_carry);
 
