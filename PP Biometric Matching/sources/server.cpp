@@ -58,8 +58,8 @@ void Server::initAndEncRandomNumbers(){
     this->enc_r0 = new_gate_bootstrapping_ciphertext_array(this->bitsize, this->params);
     this->enc_r1 = new_gate_bootstrapping_ciphertext_array(this->bitsize, this->params);
     for(unsigned i=0; i<this->bitsize; ++i){
-        bootsSymEncrypt(&this->enc_r0[i], (this->r0>>i)&1, this->key);
-        bootsSymEncrypt(&this->enc_r1[i], (this->r1>>i)&1, this->key);
+        bootsSymEncrypt(&this->enc_r0[i], ((uint8_t) this->r0>>i)&1, this->key);
+        bootsSymEncrypt(&this->enc_r1[i], ((uint8_t) this->r1>>i)&1, this->key);
     }
 }
 
@@ -158,10 +158,10 @@ void Server::euclideanDistance(){
 }
 
 void Server::computeF(){
-
     LweSample* enc_bound_match = new_gate_bootstrapping_ciphertext_array(this->max_bitsize, this->params);
+    uint8_t mu = this->bound_match;
     for (int i=0; i < this->max_bitsize; i++) {
-        bootsSymEncrypt(&enc_bound_match[i], (bound_match_clear>>i)&1, this->key);
+        bootsSymEncrypt(&enc_bound_match[i], (mu>>i)&1, this->key);
     }
     this->enc_b = new_gate_bootstrapping_ciphertext_array(this->max_bitsize, this->params);
 
