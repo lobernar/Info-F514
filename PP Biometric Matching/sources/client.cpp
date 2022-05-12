@@ -28,6 +28,8 @@ TFheGateBootstrappingSecretKeySet* Client::getSecretKey() {return this->key;}
 
 TFheGateBootstrappingParameterSet* Client::getParams() {return this->params;}
 
+int Client::getIdToken() {return this->id_token;}
+
 void Client::setIdToken(int token){
     this->id_token = token;
 }

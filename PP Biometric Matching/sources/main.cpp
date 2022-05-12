@@ -34,37 +34,41 @@ void computation(Client& client, Server& server, bool sample) {
     client.encryptSamples();
 
     // -- sending sample : client -> server -- //
-    if(sample)
+    std::chrono::steady_clock::time_point begin;
+    std::chrono::steady_clock::time_point end;
+    std::string chosenSample;
+    if(sample){
         client.sendTrueSample(server);
-    else
+        chosenSample = "true";        
+    } else{
         client.sendFalseSample(server);
+        chosenSample = "false";
+        // -- server computations -- //
+        begin = std::chrono::steady_clock::now();
+        server.nBitAddition();
+        end = std::chrono::steady_clock::now();
+        std::cout << "Addition done in " << std::chrono::duration_cast<std::chrono::seconds> (end - begin).count() << "[s]" << std::endl;
 
+        begin = std::chrono::steady_clock::now();
+        server.twosComplement();
+        end = std::chrono::steady_clock::now();
+        std::cout << "Two's complement done in " << std::chrono::duration_cast<std::chrono::seconds> (end - begin).count() << "[s]" << std::endl;
 
-    // -- server computations -- //
-    std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
-    server.nBitAddition();
-    std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
-    std::cout << "Addition done in " << std::chrono::duration_cast<std::chrono::seconds> (end - begin).count() << "[s]" << std::endl;
+        begin = std::chrono::steady_clock::now();
+        server.absoluteValue();
+        end = std::chrono::steady_clock::now();
+        std::cout << "Absolute value done in " << std::chrono::duration_cast<std::chrono::seconds> (end - begin).count() << "[s]" << std::endl;
 
-    begin = std::chrono::steady_clock::now();
-    server.twosComplement();
-    end = std::chrono::steady_clock::now();
-    std::cout << "Two's complement done in " << std::chrono::duration_cast<std::chrono::seconds> (end - begin).count() << "[s]" << std::endl;
+        server.nBitSubstraction();
+        end = std::chrono::steady_clock::now();
+        std::cout << "Subtraction done in " << std::chrono::duration_cast<std::chrono::seconds> (end - begin).count() << "[s]" << std::endl;
 
-    begin = std::chrono::steady_clock::now();
-    server.absoluteValue();
-    end = std::chrono::steady_clock::now();
-    std::cout << "Absolute value done in " << std::chrono::duration_cast<std::chrono::seconds> (end - begin).count() << "[s]" << std::endl;
-
-    server.nBitSubstraction();
-    end = std::chrono::steady_clock::now();
-    std::cout << "Subtraction done in " << std::chrono::duration_cast<std::chrono::seconds> (end - begin).count() << "[s]" << std::endl;
-
-    begin = std::chrono::steady_clock::now();
-    server.nBitMultiplication();
-    end = std::chrono::steady_clock::now();
-    std::cout << "Multiplication done in " << std::chrono::duration_cast<std::chrono::seconds> (end - begin).count() << "[s]" << std::endl;
-
+        begin = std::chrono::steady_clock::now();
+        server.nBitMultiplication();
+        end = std::chrono::steady_clock::now();
+        std::cout << "Multiplication done in " << std::chrono::duration_cast<std::chrono::seconds> (end - begin).count() << "[s]" << std::endl;
+    }
+    
     begin = std::chrono::steady_clock::now();
     server.computeF();
     end = std::chrono::steady_clock::now();
@@ -87,6 +91,8 @@ void computation(Client& client, Server& server, bool sample) {
     server.identifyUser();
     std::cout << "Sending ID token to client" << std::endl;
     server.sendIdToken(client);
+    if(client.getIdToken() == 1) std::cout << "Client successfully authenticated to the server using the " << chosenSample << " sample!" << std::endl;
+    else std::cout << "Client could not authenticate to the server using the " << chosenSample << " sample!" << std::endl;
 }
 
 int main() {

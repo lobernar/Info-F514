@@ -33,6 +33,7 @@ public:
     const TFheGateBootstrappingCloudKeySet* getCloudKey();
     TFheGateBootstrappingSecretKeySet* getSecretKey();
     TFheGateBootstrappingParameterSet* getParams();
+    int getIdToken();
     void setIdToken(int token);
     void initTemplate();
     void initSamples();
