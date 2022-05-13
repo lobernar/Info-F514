@@ -27,7 +27,7 @@ int main(void)
      */
     // Create 3 vectors of long with nslots elements for test
 //    cout << "Creation of the test vectors" << endl;
-    static const uint32_t nslots = 32;//128; // ! modif
+    static const uint32_t nslots = 128; // ! modif
     static const uint32_t bitsize = 8; //8 significant bits, however a sign bit will be used
     static const uint32_t max_bitsize = 24; // the final result will be on 24 bits, in order to ensure correctness of the euclidian distance
     vector<uint8_t> template_client(nslots);
