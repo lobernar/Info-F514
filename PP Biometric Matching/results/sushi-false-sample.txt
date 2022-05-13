@@ -1,0 +1,53 @@
+
+/// --- Biometric vector length = 32  --- ///
+
+╰─❯ make
+g++ sources/main.cpp sources/circuits.cpp sources/client.cpp sources/server.cpp -o main.o -ltfhe-spqlios-fma
+./main.o
+START
+The result of the addition is 168
+Addition done in 0[s]
+The result of the two's complement is 187
+Two's complement done in 0[s]
+The result of the absolute value is 98
+Absolute value done in 0[s]
+The result of the substraction is 186
+Subtraction done in 3[s]
+The result of the multiplication is 1216
+Multiplication done in 16[s]
+Function f computed in 702[s]
+Function g computed in 36[s]
+Sending encrypted y to client
+Sending decrypted y to server
+Verifying identiy of user
+Sending ID token to client
+Client could not authenticate to the server using the false sample!
+Protocol P computed in 761[s]
+END
+
+
+
+/// --- Biometric vector length = 128 (default)  --- ///
+╰─❯ make
+g++ sources/main.cpp sources/circuits.cpp sources/client.cpp sources/server.cpp -o main.o -ltfhe-spqlios-fma
+./main.o
+START
+The result of the addition is 222
+Addition done in 0[s]
+The result of the two's complement is 150
+Two's complement done in 0[s]
+The result of the absolute value is 86
+Absolute value done in 0[s]
+The result of the substraction is 18
+Subtraction done in 3[s]
+The result of the multiplication is 43510
+Multiplication done in 17[s]
+Function f computed in 2700[s]
+Function g computed in 35[s]
+Sending encrypted y to client
+Sending decrypted y to server
+Verifying identiy of user
+Sending ID token to client
+Client could not authenticate to the server using the false sample!
+Protocol P computed in 2759[s]
+END

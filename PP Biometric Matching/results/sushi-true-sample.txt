@@ -1,0 +1,34 @@
+
+/// --- Biometric vector length = 32  --- ///
+
+╰─❯ make
+g++ sources/main.cpp sources/circuits.cpp sources/client.cpp sources/server.cpp -o main.o -ltfhe-spqlios-fma
+./main.o
+START
+Function f computed in 688[s]
+Function g computed in 35[s]
+Sending encrypted y to client
+Sending decrypted y to server
+Verifying identiy of user
+Sending ID token to client
+Client could not authenticate to the server using the true sample!
+Protocol P computed in 725[s]
+END
+
+
+
+/// --- Biometric vector length = 128 (default)  --- ///
+╰─❯ make
+g++ sources/main.cpp sources/circuits.cpp sources/client.cpp sources/server.cpp -o main.o -ltfhe-spqlios-fma
+./main.o
+START
+Function f computed in 2717[s]
+Function g computed in 36[s]
+Sending encrypted y to client
+Sending decrypted y to server
+Verifying identiy of user
+Sending ID token to client
+Client successfully authenticated to the server using the true sample!
+Protocol P computed in 2754[s]
+END
+
