@@ -15,7 +15,7 @@ void precomputation(Client& client, Server& server);
 void protocol(Client& client, Server& server) {
     precomputation(client, server);
     computation(client, server, true); // Launch protocol with true sample
-    // computation(client, server, false); // Launch protocol with false sample
+    computation(client, server, false); // Launch protocol with false sample
 }
 
 void precomputation(Client& client, Server& server) {
