@@ -80,13 +80,13 @@ void computation(Client& client, Server& server, bool sample) {
     end = std::chrono::steady_clock::now();
     std::cout << "Function g computed in " << std::chrono::duration_cast<std::chrono::seconds> (end - begin).count() << "[s]" << std::endl;
 
-    // // sending y' : server -> client
+    // sending y' : server -> client
     std::cout << "Sending encrypted y to client" << std::endl;
     server.sendMatchingToken(client);
-    // // sending y : client -> server
+    // sending y : client -> server
     std::cout << "Sending decrypted y to server" << std::endl;
     client.sendDecToken(server);
-    // // sending r : server -> client
+    // sending r : server -> client
     std::cout << "Verifying identiy of user" << std::endl;
     server.identifyUser();
     std::cout << "Sending ID token to client" << std::endl;
