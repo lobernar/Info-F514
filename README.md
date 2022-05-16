@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This repository was created in the context of the “INFO-F514 - Protocols, cryptanalysis and mathematical cryptology” course's project at ULB.
+This repository was created in the context of the “INFO-F514 - Protocols, cryptanalysis and mathematical cryptology” course at ULB.
 
 The goal of the project was to “expand our knowledge and understanding of Cryptography beyond what is covered in the regular lectures, in a direction of our choice”.
 
@@ -14,15 +14,15 @@ In short, the making of this repository helped us to better understand the TFHE 
 
 ## **THREATS**
 
-The THREATS protocol was presented in the “*Privacy-Preserving Biometric Matching Using Homomorphic Encryption*”, and as the paper’s name induces, it implements authentication based on the fully homomorphic encryption.
+The **THREATS** protocol was presented in the “*Privacy-Preserving Biometric Matching Using Homomorphic Encryption*” paper presented at TrustCom 2021. As the paper’s name induces, it implements authentication based on the fully homomorphic encryption.
 
-THREATS code is freely available on the following GitHub repository: [https://github.com/lab-incert/threats](https://github.com/lab-incert/threats)
+**THREATS** code is freely available on the following GitHub repository: [https://github.com/lab-incert/threats](https://github.com/lab-incert/threats)
 
 ## TFHE Library
 
 **TFHE** Library, or **Fast Fully Homomorphic Encryption over the Torus**, is a library that implements “very fast gate-by-gate bootstrapping”.
 
-It is available throught the following page: [https://tfhe.github.io/tfhe/](https://tfhe.github.io/tfhe/)
+It is available through the following page: [https://tfhe.github.io/tfhe/](https://tfhe.github.io/tfhe/)
 
 ## Project’s structure
 
