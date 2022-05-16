@@ -15,3 +15,8 @@ export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:$TFHE_PREFIX/include
 export LIBRARY_PATH=$LIBRARY_PATH:$TFHE_PREFIX/lib
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$TFHE_PREFIX/lib
 ```
+
+## THREATS
+We did not implement our own circuits but we used the ones implemented by the authors of THREATS:
+https://github.com/lab-incert/threats
+THREATS is open-source software distributed under the terms of the Apache 2.0 license.
