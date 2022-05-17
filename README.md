@@ -38,11 +38,11 @@ client.cpp/hpp and server.cpp/hpp implement the client-server view of the protoc
 
 circuits.cpp/hpp contain the underlying Boolean circuits
 
-Please note that those circuits are a dull copy-paste of those implemented by THREATS’ authors. (minor a few *segmentation fault* fixes). The complete THREATS code can be found on their GitHub page as explained in the THREATS section above.
+Please note that those circuits are a dull copy-paste of those implemented by THREATS’ authors (minor a few *segmentation fault* fixes). The complete THREATS code can be found on their GitHub page as explained in the THREATS section above.
 
 ### Benchmarks
 
-Saved banchmarks are available ithrough the **results** folder, that present the execution of THREATS original code, and this code exececution for the point of view of both an honest and a malicious user.
+Saved banchmarks are available ithrough the **results** folder, that present the execution of THREATS original code, and this code execution from the point of view of both an honest and a malicious user.
 
 ### Execution
 
@@ -53,6 +53,6 @@ In order to execute the code, simply execute the joined makefile with
 make
 
 # Or
-make compile# compiles the code
+make compile # compiles the code
 make run # executes the code
 ```
